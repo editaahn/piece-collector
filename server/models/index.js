@@ -23,7 +23,7 @@ db.Diary.belongsTo(db.User);
 
 db.Diary.hasOne(db.Color);
 
-db.Diary.belongsToMany(db.Song, { through: DiarySong });
-db.Song.belongsToMany(db.Diary, { through: DiarySong });
+db.Diary.belongsToMany(db.Song, { through: 'DiarySong' });
+db.Song.belongsToMany(db.Diary, { through: 'DiarySong' });
 
 module.exports = db;
