@@ -6,7 +6,7 @@ const session = require("express-session");
 const monthlyRouter = require("./api/monthly");
 const dailyRouter = require("./api/daily");
 
-if (process.envNODE_ENV !== "test") {
+if (process.env.NODE_ENV !== "test") {
   app.use(morgan("dev"));
 }
 
