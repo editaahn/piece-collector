@@ -21,7 +21,8 @@ db.Color = require("./color")(sequelize, Sequelize);
 db.User.hasMany(db.Diary);
 db.Diary.belongsTo(db.User);
 
-db.Diary.hasOne(db.Color);
+db.Color.hasMany(db.Diary);
+db.Diary.belongsTo(db.Color);
 
 db.Diary.belongsToMany(db.Song, { through: 'DiarySong' });
 db.Song.belongsToMany(db.Diary, { through: 'DiarySong' });

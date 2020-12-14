@@ -3,17 +3,17 @@ module.exports = (sequelize, DataTypes) =>
     "diary",
     {
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         unique: true,
       },
       title: {
         type: DataTypes.STRING(100),
-        allowNull: false,
+        allowNull: true,
       },
       article: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {
