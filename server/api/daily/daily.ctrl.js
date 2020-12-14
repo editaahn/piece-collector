@@ -52,4 +52,16 @@ const create = async (req, res) => {
   };
 };
 
-module.exports = { show, create };
+const destroy = async (req, res) => {
+  const id = parseInt(req.params.id, 10)
+  if (Number.isNaN(id)) return res.status(400).end();
+  
+  const destroyed = await Diary.destroy({
+    where: { id }
+  });
+  res.status(
+    destroyed ? 204 : 404
+  ).end()
+};
+
+module.exports = { show, create, destroy };

@@ -59,9 +59,10 @@ describe("POST /daily는", () => {
         title: "song1",
         artist: "artist1",
         released_date: new Date(1995, 9, 9),
-      }, {
-        id: 1
-      }
+      },
+      {
+        id: 1,
+      },
     ],
     colorId: 1,
   };
@@ -78,11 +79,11 @@ describe("POST /daily는", () => {
         });
     });
     it("생성된 id 객체를 반환한다", () => {
-      console.log(body)
+      console.log(body);
       body.should.have.property("id");
     });
     it("옳은 날짜로 등록이 되었는지 반환한다", () => {
-      body.should.have.properties({ date: '2020-12-04' });
+      body.should.have.properties({ date: "2020-12-04" });
     });
   });
 
@@ -101,6 +102,22 @@ describe("POST /daily는", () => {
         date: new Date(2020, 11, 1), // 이미 등록된 데이터
       };
       request(app).post("/daily").send(testDataLocal).expect(409).end(done);
+    });
+  });
+});
+
+describe("DELETE /daily/:id는", () => {
+  describe("성공 시", () => {
+    it("204를 반환한다.", (done) => {
+      request(app).delete("/daily/1").expect(204).end(done);
+    });
+  });
+  describe("실패 시", () => {
+    it("파라미터 id값이 존재하지 않을 시 404을 반환한다.", (done) => {
+      request(app).delete("/daily/1000").expect(404).end(done);
+    });
+    it("id가 숫자가 아닌 경우 400을 반환한다.", (done) => {
+      request(app).delete("/daily/none").expect(400).end(done);
     });
   });
 });
