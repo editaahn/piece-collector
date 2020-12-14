@@ -1,4 +1,4 @@
-const { Diary, Sequelize: { Op } } = require("../../models");
+const { Diary, Sequelize: { Op }, Song, Color } = require("../../models");
 
 const index = async (req, res) => {
   if (!req.query.month || !req.query.year) {
@@ -16,8 +16,9 @@ const index = async (req, res) => {
         [Op.lt]: new Date(year, month + 1),
       },
     },
+    attributes: ['id','date'],
+    include: [Song, Color],
   });
-
   res.json(diaries);
 };
 
