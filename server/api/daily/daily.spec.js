@@ -121,3 +121,31 @@ describe("DELETE /daily/:id는", () => {
     });
   });
 });
+
+describe("PUT /daily/:id는", () => {
+  const title = "새로운 test 제목",
+    article = "새로운 수정 내용💜";
+  describe("성공 시", () => {
+    it("변경된 값을 응답한다.", (done) => {
+      request(app)
+        .put("/daily/2")
+        .send({ title, article })
+        .end((err, res) => {
+          console.log(res.body);
+          res.body.should.have.property("title", title);
+          done();
+        });
+    });
+  });
+  describe("실패 시", () => {
+    it("파라미터 id값이 DB에 존재하지 않을 시 404을 반환한다.", (done) => {
+      request(app).put("/daily/1000").send({ title }).expect(404).end(done);
+    });
+    it("id가 숫자가 아닌 경우 400을 반환한다.", (done) => {
+      request(app).put("/daily/none").send({ title }).expect(400).end(done);
+    });
+    it("body에 title이 없는 경우 400을 반환한다.", (done) => {
+      request(app).put("/daily/1").send({}).expect(400).end(done);
+    });
+  });
+});

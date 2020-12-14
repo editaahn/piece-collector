@@ -5,5 +5,6 @@ const ctrl = require("./daily.ctrl");
 router.get("/:id", ctrl.show);
 router.post("/", ctrl.create);
 router.delete("/:id", ctrl.destroy);
+router.put("/:id", ctrl.update);
 
 module.exports = router;
