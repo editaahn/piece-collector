@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) =>
         allowNull: false,
       },
       released_date: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
     }
