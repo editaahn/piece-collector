@@ -1,7 +1,6 @@
-import MainController from "./controllers/MainController.js";
 import "./main.css";
+import { onNavigate, initialRoutes } from "./router.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  new MainController();
-  console.log('loaded')
+  initialRoutes();
 });
