@@ -1,35 +1,28 @@
-import { apiBaseUrl } from "../../libraries/constants.js";
 import Calendar from "../components/Calendar";
+import Component from "../../state-management/Component.js";
+import store from '../../state-management/index.js';
+import { apiBaseUrl } from "../../libraries/constants.js";
 // import SelectMonth from "../components/Calendar";
 const axios = require("axios");
 
-export default class Monthly {
+export default class Monthly extends Component {
   constructor({ $root }) {
+    super ({
+      store,
+    })
     this.$root = $root;
-
-    const today = new Date();
-    this.setDateState({ date: today });
   }
 
-  setDateState(nextData) {
-    const { date } = nextData;
-    this.date = {
-      date: date,
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-    };
-  }
-
-  async getMonthlyData() {
-    // 추후 redux thunk를 통해 state로 관리
+  async getMonthlyData(year, month) {
     const result = await axios.get(
-      `${apiBaseUrl}/monthly?year=${this.date.year}&month=${this.date.month}`
+      `${apiBaseUrl}/monthly?year=${year}&month=${month}`
     );
     this.diaries = result.data;
   }
-
+  
   render() {
-    this.getMonthlyData().then(() => {
+    const { selectedDate } = store.state;
+    this.getMonthlyData(selectedDate.year, selectedDate.month).then(() => {
       this.$root.innerHTML = '';
       const $page = document.createElement("section");
       $page.className = "Monthly"
@@ -37,7 +30,7 @@ export default class Monthly {
       this.Calendar = new Calendar({
         $page,
         data: {
-          date: this.date,
+          date: store.state.selectedDate,
           diaries: this.diaries,
         },
       });
