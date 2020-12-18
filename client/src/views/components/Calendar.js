@@ -17,6 +17,10 @@ export default class Calendar {
     const $table = document.createElement("table");
 
     const { year, month } = this.date;
+    const writtenDays = this.diaries.map((diary) =>
+      parseInt(diary.date.slice(-2))
+    );
+    console.log(writtenDays);
     const WEEKS = 6; // 6주
     const DAYS = 7; // 1주에 7일
 
@@ -38,6 +42,9 @@ export default class Calendar {
         if (thisDay === day) {
           $td.textContent = dateCount;
           dateCount++;
+        }
+        if (writtenDays.includes(dateCount)) {
+          $td.style.backgroundColor = "red";
         }
         $tr.appendChild($td);
       }
