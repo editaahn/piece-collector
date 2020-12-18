@@ -2,7 +2,7 @@ import Calendar from "../components/Calendar";
 import Component from "../../state-management/Component.js";
 import store from "../../state-management/index.js";
 import { apiBaseUrl } from "../../libraries/constants.js";
-// import SelectMonth from "../components/Calendar";
+import MonthPicker from "../components/MonthPicker";
 const axios = require("axios");
 
 export default class Monthly extends Component {
@@ -22,15 +22,24 @@ export default class Monthly extends Component {
 
   render() {
     const { selectedDate } = store.state;
+
     this.getMonthlyData(selectedDate.year, selectedDate.month).then(() => {
       this.$root.innerHTML = "";
       const $page = document.createElement("section");
       $page.className = "Monthly";
 
+      this.MonthPicker = new MonthPicker({
+        $page,
+        data: {
+          date: selectedDate,
+        },
+        setMonth: (date) => store.dispatch("setDateState", date),
+      });
+
       this.Calendar = new Calendar({
         $page,
         data: {
-          date: store.state.selectedDate,
+          date: selectedDate,
           diaries: this.diaries,
         },
       });
