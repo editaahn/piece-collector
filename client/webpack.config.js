@@ -8,7 +8,7 @@ const webpack = require("webpack");
 module.exports = {
   mode: "development",
   entry: {
-    main: "./src/App.js",
+    main: "./src/app.js",
   },
   output: {
     path: path.resolve("./dist"),
