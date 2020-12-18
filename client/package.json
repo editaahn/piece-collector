@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "http-server ./dist --progress",
+    "start-test": "NODE_ENV=development webpack --progress && http-server ./dist",
     "build": "NODE_ENV=production webpack --progress"
   },
   "repository": {
@@ -19,14 +20,13 @@
   },
   "homepage": "https://github.com/editaahn/piece-collector#readme",
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "webpack": "^5.10.1",
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "axios": "^0.21.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "core-js": "^2.6.12",
@@ -37,6 +37,9 @@
     "mini-css-extract-plugin": "^1.3.3",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "webpack": "^5.10.1",
     "webpack-cli": "^4.2.0"
   }
