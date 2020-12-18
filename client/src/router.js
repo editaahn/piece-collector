@@ -6,7 +6,6 @@ const $root = document.getElementById("root");
 
 const routes = {
   "/": new Monthly({ $root }),
-  "/monthly": new Monthly({ $root }),
   // "/daily": new Daily(),
 };
 

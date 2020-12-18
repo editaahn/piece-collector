@@ -20,7 +20,6 @@ export default class Calendar {
     const writtenDays = this.diaries.map((diary) =>
       parseInt(diary.date.slice(-2))
     );
-    console.log(writtenDays);
     const WEEKS = 6; // 6주
     const DAYS = 7; // 1주에 7일
 
