@@ -1,18 +1,48 @@
+import { apiBaseUrl } from "../../libraries/constants.js";
+import Calendar from "../components/Calendar";
+// import SelectMonth from "../components/Calendar";
 const axios = require("axios");
 
 export default class Monthly {
   constructor({ $root }) {
     this.$root = $root;
+
+    const today = new Date();
+    this.setDateState({ date: today });
   }
-  async fetchData() {
-    const result = await axios.get(requestUrl);
-    this.data = result.data;
-    this.render();
+
+  setDateState(nextData) {
+    const { date } = nextData;
+    this.date = {
+      date: date,
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+    };
   }
-  render() {
-    this.fetchData().then(
-      () =>
-        (this.$root.innerHTML = `<h1>${this.data.id}, I am Monthly Page</h1>`)
+
+  async getMonthlyData() {
+    // 추후 redux thunk를 통해 state로 관리
+    const result = await axios.get(
+      `${apiBaseUrl}/monthly?year=${this.date.year}&month=${this.date.month}`
     );
+    this.diaries = result.data;
+  }
+
+  render() {
+    this.getMonthlyData().then(() => {
+      this.$root.innerHTML = '';
+      const $page = document.createElement("section");
+      $page.className = "Monthly"
+      
+      this.Calendar = new Calendar({
+        $page,
+        data: {
+          date: this.date,
+          diaries: this.diaries,
+        },
+      });
+
+      this.$root.appendChild($page)
+    });
   }
 }

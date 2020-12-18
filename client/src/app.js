@@ -1,6 +1,13 @@
 import "./main.css";
-import { onNavigate, initialRoutes } from "./router.js";
+import { onNavigate, initialRoutes, routes } from "./router.js";
+
+class App {
+  constructor() {
+    this.routes = routes;
+    initialRoutes();
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  initialRoutes();
+  new App();
 });
