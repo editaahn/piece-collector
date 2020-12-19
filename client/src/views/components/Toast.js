@@ -15,11 +15,9 @@ export default class Toast extends Component {
 
     this.$toast.className = "MonthPicker";
     this.$wrapper.className = "MonthPicker__wrapper";
-    this.$selectYear.className = 
-      "MonthPicker__select--year";
-      this.$selectMonth.className =
-      "MonthPicker__select--month";
-      this.$done.className = "MonthPicker__done";
+    this.$selectYear.className = "MonthPicker__select--year";
+    this.$selectMonth.className = "MonthPicker__select--month";
+    this.$done.className = "MonthPicker__done";
 
     this.$toast.appendChild(this.$selectYear);
     this.$toast.appendChild(this.$selectMonth);
@@ -32,8 +30,9 @@ export default class Toast extends Component {
   createOptions() {
     // store에 저장된 초기값 가져옴
     const initialDate = store.state.selectedDate;
+    const thisYear = new Date().getFullYear();
     this.selectedOption = {
-      year: new Date().getYear(),
+      year: initialDate.year,
       month: initialDate.month,
     };
     const { year, month } = this.selectedOption;
@@ -43,8 +42,8 @@ export default class Toast extends Component {
       .fill("")
       .map(
         (_, yearDifference) =>
-          `<option ${year - yearDifference === year ? "selected" : ""}> 
-          ${year - yearDifference}
+          `<option ${thisYear - yearDifference === year ? "selected" : ""}> 
+          ${thisYear - yearDifference}
         </option>`
       )
       .join("");
@@ -61,7 +60,10 @@ export default class Toast extends Component {
   }
 
   change(e) {
-    const propertyName = e.target.className.replace("MonthPicker__select--", "");
+    const propertyName = e.target.className.replace(
+      "MonthPicker__select--",
+      ""
+    );
     this.selectedOption[propertyName] = parseInt(e.target.value);
   }
 
@@ -77,11 +79,13 @@ export default class Toast extends Component {
   close(e) {
     const closeToast = () => store.dispatch("toggleToast", false);
     const className = e.target.className;
+
     if (store.state.isToastOpen && className === "MonthPicker") {
       closeToast();
     }
     if (className === "MonthPicker__done") {
-      store.dispatch("setDateState", 
+      store.dispatch(
+        "setDateState",
         new Date(this.selectedOption.year, this.selectedOption.month - 1)
       );
       closeToast();
