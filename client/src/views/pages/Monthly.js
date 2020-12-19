@@ -9,6 +9,7 @@ export default class Monthly extends Component {
   constructor({ $root }) {
     super({
       store,
+      keys: ['selectedDate'],
     });
     this.$root = $root;
   }
@@ -30,10 +31,6 @@ export default class Monthly extends Component {
 
       this.MonthPicker = new MonthPicker({
         $page,
-        data: {
-          date: selectedDate,
-        },
-        setMonth: (date) => store.dispatch("setDateState", date),
       });
 
       this.Calendar = new Calendar({
