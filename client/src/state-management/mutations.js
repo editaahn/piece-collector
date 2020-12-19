@@ -3,7 +3,7 @@ export default {
     return [
       'selectedDate', {
         date: payload,
-        year: payload.getYear(),
+        year: payload.getFullYear(),
         month: payload.getMonth() + 1,
       },
     ];
