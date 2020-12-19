@@ -5,6 +5,8 @@ export default class Component {
     let self = this;
     
     this.render = this.render || function () {};
+
+    props.keys = props.keys || [];
     
     if(props.store instanceof Store) {
       props.keys.forEach(key => {
