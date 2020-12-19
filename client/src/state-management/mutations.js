@@ -1,11 +1,14 @@
 export default {
   setDateState(state, payload) {
-    state.selectedDate = {
-      date: payload,
-      year: payload.getYear(),
-      year: payload.getMonth() + 1,
-    };
-
-    return state;
+    return [
+      'selectedDate', {
+        date: payload,
+        year: payload.getYear(),
+        month: payload.getMonth() + 1,
+      },
+    ];
+  },
+  toggleToast(state, payload) {
+    return [ 'isToastOpen', payload ];
   },
 };

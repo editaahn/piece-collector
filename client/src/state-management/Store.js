@@ -23,9 +23,9 @@ export default class Store {
       set: function (state, key, value) {
         state[key] = value;
 
-        console.log(`stateChange: ${key}: ${value}`);
+        console.log(`${key}Change: ${key}: ${value}`);
 
-        self.events.publish("stateChange", self.state);
+        self.events.publish(`${key}Change`, self.state);
 
         if (self.status !== "mutation") {
           console.warn(`You should use a mutation to set ${key}`);
@@ -66,7 +66,7 @@ export default class Store {
 
     self.status = "mutation";
     let newState = self.mutations[mutationKey](self.state, payload);
-    self.state = Object.assign(self.state, newState);
+    self.state[newState[0]] = newState[1]
 
     return true;
   }

@@ -5,5 +5,6 @@ export default {
     date: initialDate,
     year: initialDate.getFullYear(),
     month: initialDate.getMonth() + 1,
-  }
+  },
+  isToastOpen: false
 };
