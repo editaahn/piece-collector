@@ -1,12 +1,12 @@
 import Monthly from "./views/pages/Monthly.js";
-// import Daily from "./views/pages/Daily.js";
+import Daily from "./views/pages/Daily.js";
 // import Search from "./views/pages/Search.js";
 
 const $root = document.getElementById("root");
 
-const routes = {
+export const routes = {
   "/": new Monthly({ $root }),
-  // "/daily": new Daily(),
+  "/daily": new Daily({ $root }),
 };
 
 export const onNavigate = (pathname) => {
@@ -16,5 +16,5 @@ export const onNavigate = (pathname) => {
 
 export const initialRoutes = () => {
   routes[window.location.pathname].render();
-  window.onpopstate = () => routes[pathname].render();
+  window.onpopstate = () => routes[window.location.pathname].render();
 };
