@@ -1,22 +1,29 @@
-export default class MonthPicker {
-  constructor({ $page, data, setMonth }) {
-    this.$page = $page;
-    this.date = data.date;
-    this.setMonth = setMonth;
+import Component from "../../state-management/Component";
+import store from "../../state-management/index.js";
 
+export default class MonthPicker extends Component {
+  constructor({ $page }) {
+    super({ store, keys: ['selectedDate'] });
+    this.$page = $page;
+
+    this.$monthPicker = document.createElement("div");
+    this.$month = document.createElement("h1");
+    
     this.render();
+    this.onClickMonth();
   }
   render() {
-    const { year, month } = this.date;
-    const $header = document.createElement("div");
-    const $month = document.createElement("h1");
+    const { year, month } = store.state.selectedDate;
 
-    $month.textContent = `${year} / ${month}`;
+    this.$month.textContent = `${year} / ${month}`;
 
-    $header.appendChild($month);
-    this.$page.appendChild($header);
+    this.$monthPicker.appendChild(this.$month);
+    this.$page.appendChild(this.$monthPicker);
   }
   onClickMonth() {
-    
+    this.$monthPicker.addEventListener("click", () => {
+      store.dispatch("toggleToast", true);
+    });
   }
+  // 추가작업: 스와이핑하여 변경
 }
