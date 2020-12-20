@@ -6,6 +6,7 @@
   "scripts": {
     "test-monthly": "NODE_ENV=test mocha api/monthly/monthly.spec.js -w",
     "test-daily": "NODE_ENV=test mocha api/daily/daily.spec.js -w",
+    "test-color": "NODE_ENV=test mocha api/color/color.spec.js -w",
     "start": "node bin/www.js"
   },
   "repository": {
