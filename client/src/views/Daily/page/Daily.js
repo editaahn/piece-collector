@@ -1,5 +1,8 @@
 import Component from "../../../state-management/Component.js";
 import store from "../../../state-management/index.js";
+import DiaryTitle from "../components/DiaryTitle.js";
+import DiarySong from "../components/DiarySong.js";
+import DiaryArticle from "../components/DiaryArticle.js";
 import { apiBaseUrl } from "../../../libraries/constants.js";
 import { getIdParameter } from "../../../libraries/parsePath.js";
 const axios = require("axios");
@@ -13,10 +16,8 @@ export default class Daily extends Component {
   }
 
   async getDailyData(id) {
-    const result = await axios.get(
-      `${apiBaseUrl}/daily/${id}`
-    );
-    this.diaries = result.data;
+    const result = await axios.get(`${apiBaseUrl}/daily/${id}`);
+    this.diary = result.data;
   }
 
   render() {
@@ -24,7 +25,31 @@ export default class Daily extends Component {
 
     this.getDailyData(this.diaryId).then(() => {
       this.$root.innerHTML = "";
-      this.$root.textContent = "It's a diary";
+      const $page = document.createElement("section");
+      $page.className = "Daily";
+
+      this.title = new DiaryTitle({
+        $page,
+        data: {
+          title: this.diary.title,
+        },
+      });
+
+      this.song = new DiarySong({
+        $page,
+        data: {
+          songs: this.diary.songs,
+        },
+      });
+
+      this.article = new DiaryArticle({
+        $page,
+        data: {
+          article: this.diary.article,
+        },
+      });
+
+      this.$root.appendChild($page);
     });
   }
 }
