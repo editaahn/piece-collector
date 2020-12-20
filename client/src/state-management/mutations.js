@@ -1,7 +1,8 @@
 export default {
   setDateState(state, payload) {
     return [
-      'selectedDate', {
+      "selectedDate",
+      {
         date: payload,
         year: payload.getFullYear(),
         month: payload.getMonth() + 1,
@@ -9,6 +10,9 @@ export default {
     ];
   },
   toggleToast(state, payload) {
-    return [ 'isToastOpen', payload ];
+    return ["isToastOpen", payload];
+  },
+  getColors(state, payload) {
+    return ["colors", payload];
   },
 };

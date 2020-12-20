@@ -1,3 +1,4 @@
+import store from "./state-management/index.js";
 import "./main.css";
 import Toast from "./views/Monthly/components/Toast";
 import { onNavigate, initialRoutes, routes } from "./router.js";
@@ -8,6 +9,7 @@ class App {
     this.routes = routes;
     initialRoutes();
     this.toast = new Toast();
+    store.dispatch("getColors");
   }
 }
 

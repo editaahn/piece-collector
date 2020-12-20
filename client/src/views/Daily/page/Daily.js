@@ -3,6 +3,7 @@ import store from "../../../state-management/index.js";
 import DiaryTitle from "../components/DiaryTitle.js";
 import DiarySong from "../components/DiarySong.js";
 import DiaryArticle from "../components/DiaryArticle.js";
+import DiaryColor from "../components/DiaryColor.js";
 import { apiBaseUrl } from "../../../libraries/constants.js";
 import { getIdParameter } from "../../../libraries/parsePath.js";
 const axios = require("axios");
@@ -32,6 +33,13 @@ export default class Daily extends Component {
         $page,
         data: {
           title: this.diary.title,
+        },
+      });
+
+      this.color = new DiaryColor({
+        $page,
+        data: {
+          color: this.diary.color,
         },
       });
 
