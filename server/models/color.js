@@ -7,6 +7,11 @@ module.exports = (sequelize, DataTypes) =>
         allowNull: false,
         unique: true,
       },
+      hex: {
+        type: DataTypes.STRING(10),
+        allowNull: false,
+        unique: true,
+      }
     },
     {
       timestamps: false,

@@ -1,4 +1,4 @@
-import { onNavigate } from "../../router.js";
+import { onNavigate } from "../../../router.js";
 
 export default class Calendar {
   constructor({ $page, data: { date, diaries } }) {
@@ -59,15 +59,17 @@ export default class Calendar {
   }
 
   onClickDate(e) {
-    if (e.target.tagName === "TD") {
-      const date = parseInt(e.target.textContent);
-      // diaries가 등록된 날이면 조회 화면으로 이동
-      if (this.writtenDays.includes(date)) {
-        console.log("registered");
-        onNavigate('/daily')
-      } else {
-        console.log("not registered");
-      }
+    if (e.target.tagName !== "TD") return;
+
+    const clickedDate = parseInt(e.target.textContent);
+    const clickedId = this.diaries.find(
+      (diary) => parseInt(diary.date.slice(-2)) === clickedDate
+    ).id;
+
+    // diaries가 등록된 날이면 조회 화면으로 이동
+    if (this.writtenDays.includes(clickedDate)) {
+      onNavigate(`/daily/${clickedId}`);
+    } else {
       // 등록되지 않은 날이면 작성 화면으로 이동
     }
   }

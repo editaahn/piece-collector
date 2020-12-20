@@ -6,5 +6,6 @@ export default {
     year: initialDate.getFullYear(),
     month: initialDate.getMonth() + 1,
   },
-  isToastOpen: false
+  isToastOpen: false,
+  colors: []
 };
