@@ -1,5 +1,5 @@
-import Component from "../../state-management/Component";
-import store from "../../state-management/index.js";
+import Component from "../../../state-management/Component";
+import store from "../../../state-management/index.js";
 
 export default class MonthPicker extends Component {
   constructor({ $page }) {

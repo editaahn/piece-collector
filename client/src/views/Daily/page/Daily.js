@@ -1,7 +1,7 @@
-import Component from "../../state-management/Component.js";
-import store from "../../state-management/index.js";
-import { apiBaseUrl } from "../../libraries/constants.js";
-import { getIdParameter } from "../../libraries/parsePath.js";
+import Component from "../../../state-management/Component.js";
+import store from "../../../state-management/index.js";
+import { apiBaseUrl } from "../../../libraries/constants.js";
+import { getIdParameter } from "../../../libraries/parsePath.js";
 const axios = require("axios");
 
 export default class Daily extends Component {

@@ -1,4 +1,4 @@
-import { onNavigate } from "../../router.js";
+import { onNavigate } from "../../../router.js";
 
 export default class Calendar {
   constructor({ $page, data: { date, diaries } }) {

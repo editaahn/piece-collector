@@ -1,5 +1,5 @@
 import "./main.css";
-import Toast from "./views/components/Toast";
+import Toast from "./views/Monthly/components/Toast";
 import { onNavigate, initialRoutes, routes } from "./router.js";
 import { parsePath } from "./libraries/parsePath";
 
