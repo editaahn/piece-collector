@@ -2,7 +2,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
-const srcDir = path.resolve(__dirname, "src");
 const webpack = require("webpack");
 
 module.exports = {
@@ -53,7 +52,7 @@ module.exports = {
       templateParameters: {
         env: process.env.NODE_ENV === "development" ? "(개발용)" : "",
       },
-      favicon: `${srcDir}/favicon.ico`,
+      favicon: "./src/favicon.ico",
     }),
     new CleanWebpackPlugin(),
     ...(process.env.NODE_ENV === "production"
