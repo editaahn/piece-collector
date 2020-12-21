@@ -10,6 +10,7 @@
 </ul>
 <p><b>Back-end : Node.js</b></p>
 <ul>
+  <li>Express</li>
   <li>Mocha/Should.js</li>
   <li>MySQL (ORM : Sequelize)</li>
 </ul>
