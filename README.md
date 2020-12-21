@@ -35,4 +35,7 @@
   <li>[ ] 로그인 : Node.js의 Passport 라이브러리 사용</li>
   <li>[ ] 라이트/다크모드</li>
 </ol>
-<p>
+<br>
+
+<h2>Prototype</h2>
+<p><a href="https://www.figma.com/file/uzYYODX8SggyofWmbgHX4y/%EC%A1%B0%EA%B0%81%EB%AA%A8%EC%9D%8C?node-id=11%3A1">Figma - Prototype</a></p>
