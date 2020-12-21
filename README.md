@@ -7,6 +7,8 @@
 <p><b>Front-end : VanillaJS</b></p>
 <ul>
   <li>Axios</li>
+  <li>Webpack</li>
+  <li>Babel</li>
 </ul>
 <p><b>Back-end : Node.js</b></p>
 <ul>
