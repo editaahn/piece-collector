@@ -5,7 +5,7 @@ import DiarySong from "../components/DiarySong.js";
 import DiaryArticle from "../components/DiaryArticle.js";
 import DiaryColor from "../components/DiaryColor.js";
 import { apiBaseUrl } from "../../../libraries/constants.js";
-import { getIdParameter } from "../../../libraries/parsePath.js";
+import { getParameter } from "../../../libraries/parsePath.js";
 const axios = require("axios");
 
 export default class Daily extends Component {
@@ -22,7 +22,7 @@ export default class Daily extends Component {
   }
 
   render() {
-    this.diaryId = getIdParameter();
+    this.diaryId = getParameter();
 
     this.getDailyData(this.diaryId).then(() => {
       this.$root.innerHTML = "";
