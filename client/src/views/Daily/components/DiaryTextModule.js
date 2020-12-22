@@ -35,6 +35,6 @@ export default class DiaryTextModule {
     this.$text.className = text
       ? `Diary__${this.propertyName}`
       : `Diary__${this.propertyName}--empty`;
-    this.$text.innerHTML = this.text.replace("\n", "<br>");
+    this.$text.innerHTML = this.text.replace(/\n/g, "<br>");
   }
 }

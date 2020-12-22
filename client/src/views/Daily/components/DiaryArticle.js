@@ -19,7 +19,7 @@ export default class DiaryArticle extends DiaryTextModule {
     this.$heading = document.createElement("h3");
     this.$heading.innerHTML = `<img src=${headImg} alt=${this.propertyName}>`;
 
-    this.$text.innerHTML = this.text.replace('\n', '<br>');
+    this.$text.innerHTML = this.text.replace(/\n/g, '<br>');
 
     this.$wrapper.appendChild(this.$heading);
     this.$wrapper.appendChild(this.$text);
