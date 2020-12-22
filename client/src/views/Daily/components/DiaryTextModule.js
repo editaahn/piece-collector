@@ -9,7 +9,9 @@ export default class DiaryTextModule {
     this.propertyName = props.propertyName;
 
     this.$text = props.element;
-    this.$text.className = `Diary__${this.propertyName}`;
+    this.$text.className = this.text
+      ? `Diary__${this.propertyName}`
+      : `Diary__${this.propertyName}--empty`;
 
     this.render();
 
@@ -34,7 +36,9 @@ export default class DiaryTextModule {
     if (this.id) {
       await this.edit(this.id, { [this.propertyName]: text });
     }
-    this.$text.className = `Diary__${this.propertyName}`;
+    this.$text.className = text
+      ? `Diary__${this.propertyName}`
+      : `Diary__${this.propertyName}--empty`;
     this.$text.innerHTML = this.text;
   }
 }
