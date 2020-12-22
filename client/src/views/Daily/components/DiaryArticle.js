@@ -9,9 +9,11 @@ export default class DiaryArticle {
 
     this.$article = document.createElement("article");
     this.$article.className = "Diary__article";
+
     this.render();
+
     this.$article.addEventListener("click", this.onClickArticle.bind(this));
-    this.$article.addEventListener("focusout", this.onBlur.bind(this));
+    this.$article.addEventListener("focusout", this.onFocusOut.bind(this));
   }
 
   render() {
@@ -33,13 +35,12 @@ export default class DiaryArticle {
     this.article = result.data.article;
   }
 
-  async onBlur(e) {
+  async onFocusOut(e) {
+    const article = e.target.value;
     if (this.id) {
-      // 포커스 풀면 저장하고 render.
-      const article = e.target.value;
       await this.edit(this.id, { article });
-      this.$article.className = "Diary__article";
-      this.$article.innerHTML = this.article;
     }
+    this.$article.className = "Diary__article";
+    this.$article.innerHTML = this.article;
   }
 }
