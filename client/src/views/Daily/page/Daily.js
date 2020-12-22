@@ -33,20 +33,23 @@ export default class Daily extends Component {
     this.title = new DiaryTitle({
       $page,
       data: {
-        title: this.diary?.title ?? [],
+        id: this.diary?.id ?? "",
+        title: this.diary?.title ?? "",
       },
     });
 
     this.color = new DiaryColor({
       $page,
       data: {
-        color: this.diary?.color ?? [],
+        id: this.diary?.id ?? "",
+        color: this.diary?.color ?? "",
       },
     });
 
     this.song = new DiarySong({
       $page,
       data: {
+        id: this.diary?.id ?? "",
         songs: this.diary?.songs ?? [],
       },
     });
@@ -54,7 +57,8 @@ export default class Daily extends Component {
     this.article = new DiaryArticle({
       $page,
       data: {
-        article: this.diary?.article ?? [],
+        id: this.diary?.id ?? "",
+        article: this.diary?.article ?? "",
       },
     });
 
