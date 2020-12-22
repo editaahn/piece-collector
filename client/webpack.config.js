@@ -2,6 +2,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const src = path.resolve('src');
 const webpack = require("webpack");
 
 module.exports = {
@@ -25,7 +26,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jpg|png)$/,
+        test: /\.(jpg|png|svg)$/,
         loader: "url-loader",
         options: {
           name: "[name].[ext]?[hash]",

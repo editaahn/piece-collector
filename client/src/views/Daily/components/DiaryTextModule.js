@@ -7,6 +7,7 @@ export default class DiaryTextModule {
     this.id = props.id;
     this.text = props.text;
     this.propertyName = props.propertyName;
+    this.headImg = props.headImg;
 
     this.$text = props.element;
     this.$text.className = this.text
@@ -17,11 +18,6 @@ export default class DiaryTextModule {
 
     this.$text.addEventListener("click", this.onClick.bind(this));
     this.$text.addEventListener("focusout", this.onFocusOut.bind(this));
-  }
-
-  render() {
-    this.$text.innerHTML = this.text;
-    this.$page.appendChild(this.$text);
   }
 
   onClick() {} // instance에서 정의
@@ -39,6 +35,6 @@ export default class DiaryTextModule {
     this.$text.className = text
       ? `Diary__${this.propertyName}`
       : `Diary__${this.propertyName}--empty`;
-    this.$text.innerHTML = this.text;
+    this.$text.innerHTML = this.text.replace("\n", "<br>");
   }
 }

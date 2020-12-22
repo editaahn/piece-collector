@@ -1,3 +1,4 @@
+import headImg from "../../../images/daily_head_color.svg";
 import store from "../../../state-management/index.js";
 import { apiBaseUrl } from "../../../libraries/constants.js";
 const axios = require("axios");
@@ -21,7 +22,14 @@ export default class DiaryColor {
   }
 
   render() {
+    this.$wrapper = document.createElement("section");
+    this.$wrapper.className = "Diary__wrappingColor";
+
+    this.$heading = document.createElement("h3");
+    this.$heading.innerHTML = `<img src=${headImg} alt="color">`;
+
     this.setBackgroundColor();
+
     this.$colorList = document.createElement("ul");
     this.$colorList.className = "Diary__colorList";
     this.$colorList.innerHTML = this.colors
@@ -38,7 +46,9 @@ export default class DiaryColor {
       )
       .join("");
 
-    this.$page.appendChild(this.$colorList);
+    this.$wrapper.appendChild(this.$heading);
+    this.$wrapper.appendChild(this.$colorList);
+    this.$page.appendChild(this.$wrapper);
   }
 
   async edit(id, colorId) {
@@ -47,7 +57,7 @@ export default class DiaryColor {
 
   onClick(e) {
     const colorId = parseInt(e.target.dataset.colorid);
-    this.selectedColor = this.colors.find(color => color.id === colorId);
+    this.selectedColor = this.colors.find((color) => color.id === colorId);
     this.id && this.edit(this.id, { colorId });
     this.setBackgroundColor();
   }

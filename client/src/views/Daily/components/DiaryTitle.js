@@ -11,6 +11,11 @@ export default class DiaryTitle extends DiaryTextModule {
     });
   }
 
+  render() {
+    this.$text.innerHTML = this.text;
+    this.$page.appendChild(this.$text);
+  }
+
   onClick(e) {
     if (e.target.className === "Diary__title") {
       this.$text.className = "Diary__title--typing";
