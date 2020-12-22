@@ -144,7 +144,7 @@ describe("PUT /daily/:id는", () => {
     it("id가 숫자가 아닌 경우 400을 반환한다.", (done) => {
       request(app).put("/daily/none").send({ title }).expect(400).end(done);
     });
-    it("body에 title이 없는 경우 400을 반환한다.", (done) => {
+    it("body에 property가 없는 경우 400을 반환한다.", (done) => {
       request(app).put("/daily/1").send({}).expect(400).end(done);
     });
   });

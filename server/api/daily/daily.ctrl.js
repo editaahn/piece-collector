@@ -64,7 +64,7 @@ const destroy = async (req, res) => {
 const update = async (req, res) => {
   const id = parseInt(req.params.id, 10);
   const fields = req.body;
-  if (Number.isNaN(id) || !req.body?.title) {
+  if (Number.isNaN(id) || JSON.stringify(req.body) === '{}') {
     return res.status(400).end();
   }
 
