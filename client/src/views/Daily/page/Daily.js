@@ -21,43 +21,43 @@ export default class Daily extends Component {
     this.diary = result.data;
   }
 
-  render() {
-    this.diaryId = getParameter();
+  async render() {
+    this.diary = null; // 기존 데이터 초기화
+    const parameter = getParameter();
+    parameter !== "/new" && (await this.getDailyData(parameter));
 
-    this.getDailyData(this.diaryId).then(() => {
-      this.$root.innerHTML = "";
-      const $page = document.createElement("section");
-      $page.className = "Daily";
+    this.$root.innerHTML = "";
+    const $page = document.createElement("section");
+    $page.className = "Daily";
 
-      this.title = new DiaryTitle({
-        $page,
-        data: {
-          title: this.diary.title,
-        },
-      });
-
-      this.color = new DiaryColor({
-        $page,
-        data: {
-          color: this.diary.color,
-        },
-      });
-
-      this.song = new DiarySong({
-        $page,
-        data: {
-          songs: this.diary.songs,
-        },
-      });
-
-      this.article = new DiaryArticle({
-        $page,
-        data: {
-          article: this.diary.article,
-        },
-      });
-
-      this.$root.appendChild($page);
+    this.title = new DiaryTitle({
+      $page,
+      data: {
+        title: this.diary?.title ?? [],
+      },
     });
+
+    this.color = new DiaryColor({
+      $page,
+      data: {
+        color: this.diary?.color ?? [],
+      },
+    });
+
+    this.song = new DiarySong({
+      $page,
+      data: {
+        songs: this.diary?.songs ?? [],
+      },
+    });
+
+    this.article = new DiaryArticle({
+      $page,
+      data: {
+        article: this.diary?.article ?? [],
+      },
+    });
+
+    this.$root.appendChild($page);
   }
 }
