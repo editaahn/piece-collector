@@ -28,7 +28,7 @@ export default class Daily extends Component {
 
     this.$root.innerHTML = "";
     const $page = document.createElement("section");
-    $page.className = "Daily";
+    $page.className = "page Daily";
 
     this.title = new DiaryTitle({
       $page,
@@ -51,6 +51,7 @@ export default class Daily extends Component {
       data: {
         id: this.diary?.id ?? "",
         songs: this.diary?.songs ?? [],
+        color: this.diary?.color ?? "",
       },
     });
 

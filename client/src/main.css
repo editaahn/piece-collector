@@ -1,3 +1,24 @@
-#app {
-  
+@import "./styles/diary.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  padding: 0 15px;
+  overflow: hidden;
+}
+
+textarea,
+input {
+  background: none;
+  border: 0;
+  outline-style: none;
+  resize: vertical;
+}
+
+.page {
+  height: 100vh;
 }

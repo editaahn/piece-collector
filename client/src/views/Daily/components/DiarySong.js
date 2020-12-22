@@ -9,7 +9,7 @@ export default class DiarySong {
   }
   render() {
     this.$wrapper = document.createElement("section");
-    this.$wrapper.className = "Diary__wrappingSong";
+    this.$wrapper.className = "Diary__wrapper";
 
     this.$heading = document.createElement("h3");
     this.$heading.innerHTML = `<img src=${headImg} alt="song">`;

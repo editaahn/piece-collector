@@ -14,7 +14,7 @@ export default class DiaryArticle extends DiaryTextModule {
 
   render() {
     this.$wrapper = document.createElement("section");
-    this.$wrapper.className = "Diary__wrappingArticle";
+    this.$wrapper.className = "Diary__wrapper";
 
     this.$heading = document.createElement("h3");
     this.$heading.innerHTML = `<img src=${headImg} alt=${this.propertyName}>`;

@@ -27,7 +27,7 @@ export default class Monthly extends Component {
     this.getMonthlyData(selectedDate.year, selectedDate.month).then(() => {
       this.$root.innerHTML = "";
       const $page = document.createElement("section");
-      $page.className = "Monthly";
+      $page.className = "page Monthly";
 
       this.MonthPicker = new MonthPicker({
         $page,

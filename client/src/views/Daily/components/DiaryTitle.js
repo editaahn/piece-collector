@@ -17,12 +17,15 @@ export default class DiaryTitle extends DiaryTextModule {
   }
 
   onClick(e) {
-    if (e.target.className === "Diary__title") {
+    if (
+      e.target.className === "Diary__title" ||
+      e.target.className === "Diary__title--empty"
+    ) {
       this.$text.className = "Diary__title--typing";
       this.$text.innerHTML = `
         <input placeholder="Untitled" value="${this.text}" />
       `;
-      this.$text.querySelector('input').focus();
+      this.$text.querySelector("input").focus();
     }
   }
 }
