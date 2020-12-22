@@ -64,13 +64,14 @@ export default class Calendar {
     const clickedDate = parseInt(e.target.textContent);
     const clickedId = this.diaries.find(
       (diary) => parseInt(diary.date.slice(-2)) === clickedDate
-    ).id;
+    )?.id;
 
-    // diaries가 등록된 날이면 조회 화면으로 이동
     if (this.writtenDays.includes(clickedDate)) {
+      // diaries가 등록된 날이면 조회 화면으로 이동
       onNavigate(`/daily/${clickedId}`);
     } else {
       // 등록되지 않은 날이면 작성 화면으로 이동
+      onNavigate('/daily/new');
     }
   }
 }

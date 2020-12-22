@@ -1,11 +1,22 @@
-export default class DiaryArticle {
-  constructor({ $page, data: { article } }) {
-    this.$page = $page;
-    this.article = article;
+import DiaryTextModule from "./DiaryTextModule";
 
-    this.render();
+export default class DiaryTitle extends DiaryTextModule {
+  constructor({ $page, data: { id, article } }) {
+    super({
+      $page,
+      id,
+      text: article,
+      propertyName: "article",
+      element: document.createElement("article"),
+    });
   }
-  render() {
-    this.$page.innerHTML += `<article>${this.article}</article>`;
+
+  onClick(e) {
+    if (e.target.className === "Diary__article") {
+      this.$text.className = "Diary__article--typing";
+      this.$text.innerHTML = `
+        <textarea placeholder="Write diary" autofocus>${this.text}</textarea>
+      `;
+    }
   }
 }

@@ -3,7 +3,7 @@ export const parsePath = (pathName) => {
   return "/" + parsedPath;
 };
 
-export const getIdParameter = () => {
+export const getParameter = () => {
   const path = window.location.pathname;
   const paramIndexStart = path.lastIndexOf("/");
   return path.slice(paramIndexStart);
