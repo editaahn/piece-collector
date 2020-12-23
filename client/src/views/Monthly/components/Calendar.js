@@ -1,4 +1,6 @@
 import { onNavigate } from "../../../router.js";
+import store from "../../../state-management/index.js";
+import state from "../../../state-management/state.js";
 
 export default class Calendar {
   constructor({ $page, data: { date, diaries } }) {
@@ -71,7 +73,8 @@ export default class Calendar {
       onNavigate(`/daily/${clickedId}`);
     } else {
       // 등록되지 않은 날이면 작성 화면으로 이동
-      onNavigate('/daily/new');
+      store.dispatch("setNewDiaryDate", clickedDate);
+      onNavigate("/daily/new");
     }
   }
 }

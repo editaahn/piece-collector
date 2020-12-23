@@ -8,7 +8,8 @@
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 textarea,
@@ -19,11 +20,16 @@ input {
   resize: vertical;
 }
 
+button {
+  border: 0;
+  cursor: pointer;
+}
+
 #root {
   background: var(--surface-color);
   padding: 0 20px;
 }
 
 .page {
-  height: 100vh;
+  min-height: 100vh;
 }

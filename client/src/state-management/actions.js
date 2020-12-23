@@ -2,8 +2,11 @@ import { apiBaseUrl } from "../libraries/constants";
 const axios = require("axios");
 
 export default {
-  setDateState(context, payload) {
-    context.commit("setDateState", payload);
+  setMonthlyDate(context, payload) {
+    context.commit("setMonthlyDate", payload);
+  },
+  setNewDiaryDate(context, payload) {
+    context.commit("setNewDiaryDate", payload);
   },
   toggleToast(context, payload) {
     context.commit("toggleToast", payload);

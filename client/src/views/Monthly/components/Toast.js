@@ -29,7 +29,7 @@ export default class Toast extends Component {
 
   createOptions() {
     // store에 저장된 초기값 가져옴
-    const initialDate = store.state.selectedDate;
+    const initialDate = store.state.monthlyDate;
     const thisYear = new Date().getFullYear();
     this.selectedOption = {
       year: initialDate.year,
@@ -85,7 +85,7 @@ export default class Toast extends Component {
     }
     if (className === "MonthPicker__done") {
       store.dispatch(
-        "setDateState",
+        "setMonthlyDate",
         new Date(this.selectedOption.year, this.selectedOption.month - 1)
       );
       closeToast();

@@ -7,6 +7,30 @@
   text-align: left;
 }
 
+.Diary__header {
+  height: 63px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Diary__goBack {
+}
+
+.Diary__date {
+  /* font-family: Post No Bills Colombo SemiBold; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 63px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.Diary__submit {
+}
+
 .Diary__title,
 .Diary__title--typing,
 .Diary__title--empty {
@@ -33,7 +57,7 @@
 }
 
 .Diary__title--typing > input {
-  border-bottom: 3px solid #959595;
+  border-bottom: 3px solid var(--main-color);
   font-size: 20px;
 }
 
@@ -93,7 +117,7 @@
   white-space: nowrap;
   word-wrap: normal;
   overflow: hidden;
-  
+
   background: var(--main-color);
 }
 
@@ -105,9 +129,15 @@
 
 .Diary__article--typing > textarea {
   width: 100%;
-  resize: none;
-  overflow-y: hidden;
-  padding: 1.1em; 
-  padding-bottom: 0.2em;
+  line-height: 1.5;
+  font-size: 14px;
+  height: 100%;
+  max-height: 100vh;
+}
+
+.Diary__article--empty::after {
+  color: #959595;
+  content: "Write Diary";
+  font-size: 14px;
   line-height: 1.6;
 }
