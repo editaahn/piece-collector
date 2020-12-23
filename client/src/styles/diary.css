@@ -15,6 +15,10 @@
   justify-content: space-between;
 }
 
+.Diary__header > button {
+  width: 32px;
+}
+
 .Diary__goBack {
 }
 
@@ -28,7 +32,12 @@
   text-align: center;
 }
 
-.Diary__submit {
+.Diary__submitDiv {
+  width:32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Diary__title,

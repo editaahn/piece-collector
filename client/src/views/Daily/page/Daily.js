@@ -4,10 +4,8 @@ import DiaryTitle from "../components/DiaryTitle.js";
 import DiarySong from "../components/DiarySong.js";
 import DiaryArticle from "../components/DiaryArticle.js";
 import DiaryColor from "../components/DiaryColor.js";
-import { setDocumentTheme } from "../../../libraries/themeColor";
 import { apiBaseUrl } from "../../../libraries/constants.js";
 import { getParameter } from "../../../libraries/parsePath.js";
-import DiaryHeader from "../components/DiaryHeader.js";
 const axios = require("axios");
 
 export default class Daily extends Component {
@@ -29,20 +27,8 @@ export default class Daily extends Component {
     parameter !== "/new" && (await this.getDailyData(parameter));
 
     this.$root.innerHTML = "";
-
-    const $nav = document.createElement("header");
     const $page = document.createElement("section");
-
-    $nav.className = "Diary__header";
-    $page.className = "page Daily";
-
-    this.header = new DiaryHeader({
-      $nav,
-      data: {
-        date:
-          this.diary?.date ?? store.state.newDairyDate,
-      },
-    });
+    $page.className = "Daily";
 
     this.title = new DiaryTitle({
       $page,
@@ -65,7 +51,6 @@ export default class Daily extends Component {
       data: {
         id: this.diary?.id ?? "",
         songs: this.diary?.songs ?? [],
-        color: this.diary?.color ?? "",
       },
     });
 
@@ -77,9 +62,6 @@ export default class Daily extends Component {
       },
     });
 
-    setDocumentTheme(this.diary?.color.id);
-
-    this.$root.appendChild($nav);
     this.$root.appendChild($page);
   }
 }
