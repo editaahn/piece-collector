@@ -1,12 +1,17 @@
 export default {
-  setDateState(state, payload) {
+  setMonthlyDate(state, payload) {
     return [
-      "selectedDate",
+      "monthlyDate",
       {
-        date: payload,
         year: payload.getFullYear(),
         month: payload.getMonth() + 1,
       },
+    ];
+  },
+  setNewDiaryDate(state, payload) {
+    return [
+      "newDairyDate",
+      `${state.monthlyDate.year}-${state.monthlyDate.month}-${payload}`,
     ];
   },
   toggleToast(state, payload) {

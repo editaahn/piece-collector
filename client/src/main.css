@@ -1,3 +1,35 @@
-#app {
-  
+@import "./styles/theme.css";
+@import "./styles/diary.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+textarea,
+input {
+  background: none;
+  border: 0;
+  outline-style: none;
+  resize: vertical;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+#root {
+  background: var(--surface-color);
+  padding: 0 20px;
+}
+
+.page {
+  min-height: 100vh;
 }

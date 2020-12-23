@@ -1,0 +1,143 @@
+* {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.Diary__header {
+  height: 63px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Diary__goBack {
+}
+
+.Diary__date {
+  /* font-family: Post No Bills Colombo SemiBold; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 63px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.Diary__submit {
+}
+
+.Diary__title,
+.Diary__title--typing,
+.Diary__title--empty {
+  height: 73px;
+
+  /* font-family: Post No Bills Colombo SemiBold; */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+
+  color: #000;
+}
+
+.Diary__title--empty::after {
+  color: #959595;
+  content: "Untitled..";
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.Diary__title--typing > input {
+  border-bottom: 3px solid var(--main-color);
+  font-size: 20px;
+}
+
+.Diary__wrapper {
+  padding: 20px 0;
+  margin-bottom: 10px;
+}
+
+.Diary__colorList {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.Diary__colorList > li {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  box-sizing: border-box;
+
+  font-size: 0;
+  line-height: 0;
+
+  margin-left: 10px;
+}
+
+.Diary__colorList > li:first-child {
+  margin-left: 0;
+}
+
+.Diary__color {
+  border: 1px solid #959595;
+}
+
+.Diary__color--selected {
+  border: 1px solid #000000;
+}
+
+.Diary__songList {
+  margin-top: 15px;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+}
+
+.Diary__song {
+  display: flex;
+
+  max-width: 100%;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 12px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+
+  background: var(--main-color);
+}
+
+.Diary__article,
+.Diary__article--typing,
+.Diary__article--empty {
+  margin-top: 15px;
+}
+
+.Diary__article--typing > textarea {
+  width: 100%;
+  line-height: 1.5;
+  font-size: 14px;
+  height: 100%;
+  max-height: 100vh;
+}
+
+.Diary__article--empty::after {
+  color: #959595;
+  content: "Write Diary";
+  font-size: 14px;
+  line-height: 1.6;
+}

@@ -1,11 +1,11 @@
 const initialDate = new Date();
 
 export default {
-  selectedDate: {
-    date: initialDate,
-    year: initialDate.getFullYear(),
-    month: initialDate.getMonth() + 1,
+  monthlyDate: {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
   },
+  newDairyDate: null,
   isToastOpen: false,
   colors: []
 };

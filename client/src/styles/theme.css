@@ -1,0 +1,14 @@
+:root[theme="1"] {
+  --main-color: #FFCFAE;
+  --surface-color: #FFCFAE4D;
+}
+
+:root[theme="2"] {
+  --main-color: #CCDFE0;
+  --surface-color: #CCDFE04D;
+}
+
+:root[theme="3"] {
+  --main-color: #D2D2D2;
+  --surface-color: #D2D2D24D;
+}

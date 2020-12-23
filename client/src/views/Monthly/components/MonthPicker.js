@@ -3,7 +3,7 @@ import store from "../../../state-management/index.js";
 
 export default class MonthPicker extends Component {
   constructor({ $page }) {
-    super({ store, keys: ['selectedDate'] });
+    super({ store, keys: ['monthlyDate'] });
     this.$page = $page;
 
     this.$monthPicker = document.createElement("div");
@@ -13,7 +13,7 @@ export default class MonthPicker extends Component {
     this.onClickMonth();
   }
   render() {
-    const { year, month } = store.state.selectedDate;
+    const { year, month } = store.state.monthlyDate;
 
     this.$month.textContent = `${year} / ${month}`;
 

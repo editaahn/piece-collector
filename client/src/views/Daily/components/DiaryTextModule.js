@@ -7,6 +7,7 @@ export default class DiaryTextModule {
     this.id = props.id;
     this.text = props.text;
     this.propertyName = props.propertyName;
+    this.headImg = props.headImg;
 
     this.$text = props.element;
     this.$text.className = this.text
@@ -19,26 +20,22 @@ export default class DiaryTextModule {
     this.$text.addEventListener("focusout", this.onFocusOut.bind(this));
   }
 
-  render() {
-    this.$text.innerHTML = this.text;
-    this.$page.appendChild(this.$text);
-  }
-
   onClick() {} // instance에서 정의
 
   async edit(id, text) {
-    const result = await axios.put(`${apiBaseUrl}/daily/${id}`, text);
-    this.text = result.data[this.propertyName];
+    await axios.put(`${apiBaseUrl}/daily/${id}`, text);
   }
 
-  async onFocusOut(e) {
+  onFocusOut(e) {
     const text = e.target.value;
+    this.text = text;
+
     if (this.id) {
-      await this.edit(this.id, { [this.propertyName]: text });
+      this.edit(this.id, { [this.propertyName]: text });
     }
     this.$text.className = text
       ? `Diary__${this.propertyName}`
       : `Diary__${this.propertyName}--empty`;
-    this.$text.innerHTML = this.text;
+    this.$text.innerHTML = this.text.replace(/\n/g, "<br>");
   }
 }

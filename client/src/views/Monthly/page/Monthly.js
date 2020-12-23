@@ -9,7 +9,7 @@ export default class Monthly extends Component {
   constructor({ $root }) {
     super({
       store,
-      keys: ['selectedDate'],
+      keys: ['monthlyDate'],
     });
     this.$root = $root;
   }
@@ -22,12 +22,12 @@ export default class Monthly extends Component {
   }
 
   render() {
-    const { selectedDate } = store.state;
+    const { monthlyDate } = store.state;
 
-    this.getMonthlyData(selectedDate.year, selectedDate.month).then(() => {
+    this.getMonthlyData(monthlyDate.year, monthlyDate.month).then(() => {
       this.$root.innerHTML = "";
       const $page = document.createElement("section");
-      $page.className = "Monthly";
+      $page.className = "page Monthly";
 
       this.MonthPicker = new MonthPicker({
         $page,
@@ -36,7 +36,7 @@ export default class Monthly extends Component {
       this.Calendar = new Calendar({
         $page,
         data: {
-          date: selectedDate,
+          date: monthlyDate,
           diaries: this.diaries,
         },
       });

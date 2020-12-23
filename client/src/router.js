@@ -4,6 +4,7 @@ import Daily from "./views/Daily/page/Daily.js";
 import { parsePath } from "./libraries/parsePath.js";
 
 const $root = document.getElementById("root");
+const $nav = document.getElementById("nav");
 
 export const routes = {
   "/": new Monthly({ $root }),
