@@ -1,4 +1,5 @@
 import headImg from "../../../images/daily_head_song.svg";
+import Component from "../../../state-management/Component";
 
 export default class DiarySong {
   constructor({ $page, data: { songs } }) {

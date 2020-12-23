@@ -1,3 +1,4 @@
+import { setDocumentTheme } from "../../../libraries/themeColor";
 import headImg from "../../../images/daily_head_color.svg";
 import store from "../../../state-management/index.js";
 import { apiBaseUrl } from "../../../libraries/constants.js";
@@ -7,9 +8,9 @@ export default class DiaryColor {
   constructor({ $page, data: { id, color } }) {
     this.$page = $page;
     this.id = id;
+
     this.colors = store.state.colors;
-    this.selectedColor = color || this.colors[0];
-    this.colorId = this.selectedColor.id;
+    this.color = color || this.colors[1];
 
     this.render();
 
@@ -17,6 +18,8 @@ export default class DiaryColor {
   }
 
   render() {
+    const color = this.color;
+
     this.$wrapper = document.createElement("section");
     this.$wrapper.className = "Diary__wrapper";
 
@@ -36,40 +39,33 @@ export default class DiaryColor {
       )
       .join("");
 
-    this.selectColor(this.colorId);
-    this.setBackgroundColor();
+    this.setIndicator(color);
 
     this.$wrapper.appendChild(this.$heading);
     this.$wrapper.appendChild(this.$colorList);
     this.$page.appendChild(this.$wrapper);
   }
 
-  selectColor(id) {
+  setIndicator(color) {
     this.$colorList.querySelectorAll("li").forEach(($color) => {
+      const elementColorId = parseInt($color.dataset.colorid);
       $color.className =
-        id === $color.dataset.colorid
-          ? "Diary__color--selected"
-          : "Diary__color";
+        color.id === elementColorId ? "Diary__color--selected" : "Diary__color";
     });
   }
 
-  setBackgroundColor() {
-    const hex = this.selectedColor.hex;
-    this.$page.style.backgroundColor = `#${hex}E3`;
-  }
-
-  async edit(id, colorId) {
-    await axios.put(`${apiBaseUrl}/daily/${id}`, colorId);
+  async edit(diaryId, colorId) {
+    await axios.put(`${apiBaseUrl}/daily/${diaryId}`, colorId);
   }
 
   onClick(e) {
     if (e.target.className === "Diary__color") {
       const colorId = parseInt(e.target.dataset.colorid);
-      this.selectedColor = this.colors.find((color) => color.id === colorId);
-      this.id && this.edit(this.id, { colorId });
+      const selectedColor = this.colors.find((color) => color.id === colorId);
 
-      this.selectColor(colorId);
-      this.setBackgroundColor();
+      setDocumentTheme(selectedColor.id);
+      this.setIndicator(selectedColor); // dom class 변경
+      this.id && this.edit(this.id, { colorId: selectedColor.id }); // DB 변경
     }
   }
 }

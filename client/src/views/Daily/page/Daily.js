@@ -4,6 +4,7 @@ import DiaryTitle from "../components/DiaryTitle.js";
 import DiarySong from "../components/DiarySong.js";
 import DiaryArticle from "../components/DiaryArticle.js";
 import DiaryColor from "../components/DiaryColor.js";
+import { setDocumentTheme } from "../../../libraries/themeColor";
 import { apiBaseUrl } from "../../../libraries/constants.js";
 import { getParameter } from "../../../libraries/parsePath.js";
 const axios = require("axios");
@@ -62,6 +63,8 @@ export default class Daily extends Component {
         article: this.diary?.article ?? "",
       },
     });
+
+    setDocumentTheme(this.diary?.color.id);
 
     this.$root.appendChild($page);
   }
