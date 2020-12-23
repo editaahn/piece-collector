@@ -10,6 +10,8 @@ export default class DiaryArticle extends DiaryTextModule {
       propertyName: "article",
       element: document.createElement("article"),
     });
+
+    this.$text.addEventListener("keyup", this.resize.bind(this));
   }
 
   render() {
@@ -19,7 +21,7 @@ export default class DiaryArticle extends DiaryTextModule {
     this.$heading = document.createElement("h3");
     this.$heading.innerHTML = `<img src=${headImg} alt=${this.propertyName}>`;
 
-    this.$text.innerHTML = this.text.replace(/\n/g, '<br>');
+    this.$text.innerHTML = this.text.replace(/\n/g, "<br>");
 
     this.$wrapper.appendChild(this.$heading);
     this.$wrapper.appendChild(this.$text);
@@ -27,11 +29,18 @@ export default class DiaryArticle extends DiaryTextModule {
   }
 
   onClick(e) {
-    if (e.target.className === "Diary__article") {
+    if (
+      e.target.className === "Diary__article" ||
+      e.target.className === "Diary__article--empty"
+    ) {
       this.$text.className = "Diary__article--typing";
       this.$text.innerHTML = `
-        <textarea placeholder="Write diary" autofocus>${this.text}</textarea>
+        <textarea placeholder="Write diary" rows="20" autofocus>${this.text}</textarea>
       `;
     }
+  }
+
+  resize() {
+    // develop 필요
   }
 }
