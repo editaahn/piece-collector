@@ -8,8 +8,8 @@ export const errorMessage = {
   500: "서버 오류입니다.",
 };
 
-const request = async (api) => {
-  const result = await api();
+const request = async (method, url) => {
+  const result = await axios({ method, url });
   return result.data;
 };
 
