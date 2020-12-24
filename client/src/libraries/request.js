@@ -16,8 +16,10 @@ const request = async (method, url, data) => {
 export const api = {
   getMonthlyData: (year, month) =>
     request("get", `${apiBaseUrl}/monthly?year=${year}&month=${month}`),
-  getDailyData: (id) => request("get", `${apiBaseUrl}/daily/${id}`),
+  getDailyData: (id) => 
+    request("get", `${apiBaseUrl}/daily/${id}`),
   editColor: (diaryId, colorId) =>
     request("put", `${apiBaseUrl}/daily/${diaryId}`, colorId),
-  editText: (id, text) => request("put", `${apiBaseUrl}/daily/${id}`, text),
+  editText: (id, text) => 
+    request("put", `${apiBaseUrl}/daily/${id}`, text),
 };
