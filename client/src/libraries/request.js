@@ -8,8 +8,8 @@ export const errorMessage = {
   500: "서버 오류입니다.",
 };
 
-const request = async (method, url) => {
-  const result = await axios({ method, url });
+const request = async (method, url, data) => {
+  const result = await axios({ method, url, data });
   return result.data;
 };
 
@@ -17,4 +17,7 @@ export const api = {
   getMonthlyData: (year, month) =>
     request("get", `${apiBaseUrl}/monthly?year=${year}&month=${month}`),
   getDailyData: (id) => request("get", `${apiBaseUrl}/daily/${id}`),
+  editColor: (diaryId, colorId) =>
+    request("put", `${apiBaseUrl}/daily/${diaryId}`, colorId),
+  editText: (id, text) => request("put", `${apiBaseUrl}/daily/${id}`, text),
 };

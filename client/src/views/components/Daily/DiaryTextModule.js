@@ -1,5 +1,4 @@
-import { apiBaseUrl } from "../../../libraries/constants.js";
-const axios = require("axios");
+import { api } from "../../../libraries/request.js";
 
 export default class DiaryTextModule {
   constructor(props = {}) {
@@ -21,17 +20,13 @@ export default class DiaryTextModule {
   }
 
   onClick() {} // instance에서 정의
-
-  async edit(id, text) {
-    await axios.put(`${apiBaseUrl}/daily/${id}`, text);
-  }
-
+  
   onFocusOut(e) {
     const text = e.target.value;
     this.text = text;
 
     if (this.id) {
-      this.edit(this.id, { [this.propertyName]: text });
+      api.editText(this.id, { [this.propertyName]: text });
     }
     this.$text.className = text
       ? `Diary__${this.propertyName}`
