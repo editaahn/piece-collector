@@ -1,13 +1,13 @@
-import Component from "../../../state-management/Component.js";
-import store from "../../../state-management/index.js";
-import DiaryTitle from "../components/DiaryTitle.js";
-import DiarySong from "../components/DiarySong.js";
-import DiaryArticle from "../components/DiaryArticle.js";
-import DiaryColor from "../components/DiaryColor.js";
-import { setDocumentTheme } from "../../../libraries/themeColor";
-import { apiBaseUrl } from "../../../libraries/constants.js";
-import { getParameter } from "../../../libraries/parsePath.js";
-import DiaryHeader from "../components/DiaryHeader.js";
+import Component from "../../state-management/Component.js";
+import store from "../../state-management/index.js";
+import DiaryTitle from "../components/Daily/DiaryTitle.js";
+import DiarySong from "../components/Daily/DiarySong.js";
+import DiaryArticle from "../components/Daily/DiaryArticle.js";
+import DiaryColor from "../components/Daily/DiaryColor.js";
+import { setDocumentTheme } from "../../libraries/themeColor";
+import { apiBaseUrl } from "../../libraries/constants.js";
+import { getParameter } from "../../libraries/parsePath.js";
+import DiaryHeader from "../components/Daily/DiaryHeader.js";
 const axios = require("axios");
 
 export default class Daily extends Component {

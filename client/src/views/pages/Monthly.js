@@ -1,8 +1,8 @@
-import Calendar from "../components/Calendar";
-import Component from "../../../state-management/Component.js";
-import store from "../../../state-management/index.js";
-import { apiBaseUrl } from "../../../libraries/constants.js";
-import MonthPicker from "../components/MonthPicker";
+import Calendar from "../components/Monthly/Calendar";
+import Component from "../../state-management/Component.js";
+import store from "../../state-management/index.js";
+import { apiBaseUrl } from "../../libraries/constants.js";
+import MonthPicker from "../components/Monthly/MonthPicker";
 const axios = require("axios");
 
 export default class Monthly extends Component {

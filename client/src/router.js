@@ -1,5 +1,5 @@
-import Monthly from "./views/Monthly/page/Monthly.js";
-import Daily from "./views/Daily/page/Daily.js";
+import Monthly from "./views/pages/Monthly.js";
+import Daily from "./views/pages/Daily.js";
 // import Search from "./views/pages/Search.js";
 import { parsePath } from "./libraries/parsePath.js";
 
