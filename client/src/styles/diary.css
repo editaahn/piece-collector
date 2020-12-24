@@ -28,7 +28,12 @@
   text-align: center;
 }
 
-.Diary__submit {
+.Diary__submitDiv {
+  width:32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Diary__title,

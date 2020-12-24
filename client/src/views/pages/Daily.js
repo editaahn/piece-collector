@@ -37,6 +37,7 @@ export default class Daily extends Component {
     this.header = new DiaryHeader({
       $nav,
       data: {
+        type: diary ? "written" : "new",
         date: diary?.date ?? store.state.newDairyDate,
       },
     });
