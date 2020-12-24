@@ -1,14 +1,13 @@
 import Component from "../../state-management/Component.js";
 import store from "../../state-management/index.js";
+import DiaryHeader from "../components/Daily/DiaryHeader.js";
 import DiaryTitle from "../components/Daily/DiaryTitle.js";
 import DiarySong from "../components/Daily/DiarySong.js";
 import DiaryArticle from "../components/Daily/DiaryArticle.js";
 import DiaryColor from "../components/Daily/DiaryColor.js";
 import { setDocumentTheme } from "../../libraries/themeColor";
-import { apiBaseUrl } from "../../libraries/constants.js";
 import { getParameter } from "../../libraries/parsePath.js";
-import DiaryHeader from "../components/Daily/DiaryHeader.js";
-const axios = require("axios");
+import { api } from "../../libraries/request.js";
 
 export default class Daily extends Component {
   constructor({ $root }) {
@@ -18,15 +17,14 @@ export default class Daily extends Component {
     this.$root = $root;
   }
 
-  async getDailyData(id) {
-    const result = await axios.get(`${apiBaseUrl}/daily/${id}`);
-    this.diary = result.data;
-  }
-
   async render() {
-    this.diary = null; // 기존 데이터 초기화
+    // this.diary = null; // 기존 데이터 초기화
     const parameter = getParameter();
-    parameter !== "/new" && (await this.getDailyData(parameter));
+
+    let diary;
+    if (parameter !== "/new") {
+      diary = await api.getDailyData(parameter);
+    }
 
     this.$root.innerHTML = "";
 
@@ -39,45 +37,44 @@ export default class Daily extends Component {
     this.header = new DiaryHeader({
       $nav,
       data: {
-        date:
-          this.diary?.date ?? store.state.newDairyDate,
+        date: diary?.date ?? store.state.newDairyDate,
       },
     });
 
     this.title = new DiaryTitle({
       $page,
       data: {
-        id: this.diary?.id ?? "",
-        title: this.diary?.title ?? "",
+        id: diary?.id ?? "",
+        title: diary?.title ?? "",
       },
     });
 
     this.color = new DiaryColor({
       $page,
       data: {
-        id: this.diary?.id ?? "",
-        color: this.diary?.color ?? "",
+        id: diary?.id ?? "",
+        color: diary?.color ?? "",
       },
     });
 
     this.song = new DiarySong({
       $page,
       data: {
-        id: this.diary?.id ?? "",
-        songs: this.diary?.songs ?? [],
-        color: this.diary?.color ?? "",
+        id: diary?.id ?? "",
+        songs: diary?.songs ?? [],
+        color: diary?.color ?? "",
       },
     });
 
     this.article = new DiaryArticle({
       $page,
       data: {
-        id: this.diary?.id ?? "",
-        article: this.diary?.article ?? "",
+        id: diary?.id ?? "",
+        article: diary?.article ?? "",
       },
     });
 
-    setDocumentTheme(this.diary?.color.id);
+    setDocumentTheme(diary?.color.id);
 
     this.$root.appendChild($nav);
     this.$root.appendChild($page);

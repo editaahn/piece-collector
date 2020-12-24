@@ -16,4 +16,5 @@ const request = async (method, url) => {
 export const api = {
   getMonthlyData: (year, month) =>
     request("get", `${apiBaseUrl}/monthly?year=${year}&month=${month}`),
+  getDailyData: (id) => request("get", `${apiBaseUrl}/daily/${id}`),
 };
