@@ -1,33 +1,30 @@
 import Calendar from "../components/Monthly/Calendar";
 import Component from "../../state-management/Component.js";
 import store from "../../state-management/index.js";
-import { apiBaseUrl } from "../../libraries/constants.js";
 import MonthPicker from "../components/Monthly/MonthPicker";
-const axios = require("axios");
+import ErrorPage from "./ErrorPage";
+import { api } from "../../libraries/request.js";
 
 export default class Monthly extends Component {
   constructor({ $root }) {
     super({
       store,
-      keys: ['monthlyDate'],
+      keys: ["monthlyDate"],
     });
     this.$root = $root;
   }
 
-  async getMonthlyData(year, month) {
-    const result = await axios.get(
-      `${apiBaseUrl}/monthly?year=${year}&month=${month}`
-    );
-    this.diaries = result.data;
-  }
+  async render() {
+    this.$root.innerHTML = "";
+    const $page = document.createElement("section");
+    $page.className = "page Monthly";
 
-  render() {
     const { monthlyDate } = store.state;
-
-    this.getMonthlyData(monthlyDate.year, monthlyDate.month).then(() => {
-      this.$root.innerHTML = "";
-      const $page = document.createElement("section");
-      $page.className = "page Monthly";
+    try {
+      const diaries = await api.getMonthlyData(
+        monthlyDate.year,
+        monthlyDate.month
+      );
 
       this.MonthPicker = new MonthPicker({
         $page,
@@ -37,11 +34,16 @@ export default class Monthly extends Component {
         $page,
         data: {
           date: monthlyDate,
-          diaries: this.diaries,
+          diaries,
         },
       });
-
+    } catch (error) {
+      this.ErrorPage = new ErrorPage({
+        $page,
+        error: error.response,
+      });
+    } finally {
       this.$root.appendChild($page);
-    });
+    }
   }
 }
