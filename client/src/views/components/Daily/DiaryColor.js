@@ -1,8 +1,7 @@
 import { setDocumentTheme } from "../../../libraries/themeColor";
 import headImg from "../../../images/daily_head_color.svg";
 import store from "../../../state-management/index.js";
-import { apiBaseUrl } from "../../../libraries/constants.js";
-const axios = require("axios");
+import { api } from "../../../libraries/request.js";
 
 export default class DiaryColor {
   constructor({ $page, data: { id, color } }) {
@@ -54,10 +53,6 @@ export default class DiaryColor {
     });
   }
 
-  async edit(diaryId, colorId) {
-    await axios.put(`${apiBaseUrl}/daily/${diaryId}`, colorId);
-  }
-
   onClick(e) {
     if (e.target.className === "Diary__color") {
       const colorId = parseInt(e.target.dataset.colorid);
@@ -65,7 +60,7 @@ export default class DiaryColor {
 
       setDocumentTheme(selectedColor.id);
       this.setIndicator(selectedColor); // dom class 변경
-      this.id && this.edit(this.id, { colorId: selectedColor.id }); // DB 변경
+      this.id && api.editColor(this.id, { colorId: selectedColor.id }); // DB 변경
     }
   }
 }

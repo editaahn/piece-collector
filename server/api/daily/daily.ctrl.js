@@ -44,9 +44,10 @@ const create = async (req, res) => {
     res.status(201).json(result);
   } catch (err) {
     const ERROR_NUMBER = 1062;
-    if (err.parent.errno === ERROR_NUMBER) {
+    if (err.parent?.errno === ERROR_NUMBER) {
       return res.status(409).end();
     }
+    console.error(err);
     res.status(500).end();
   }
 };

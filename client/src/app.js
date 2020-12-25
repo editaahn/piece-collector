@@ -1,6 +1,6 @@
 import store from "./state-management/index.js";
 import "./main.css";
-import Toast from "./views/Monthly/components/Toast";
+import Toast from "./views/components/Monthly/Toast.js";
 import { onNavigate, initialRoutes, routes } from "./router.js";
 import { parsePath } from "./libraries/parsePath";
 

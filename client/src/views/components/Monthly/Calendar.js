@@ -1,6 +1,5 @@
 import { onNavigate } from "../../../router.js";
 import store from "../../../state-management/index.js";
-import state from "../../../state-management/state.js";
 
 export default class Calendar {
   constructor({ $page, data: { date, diaries } }) {
