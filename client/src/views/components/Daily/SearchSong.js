@@ -1,12 +1,15 @@
+import { youtubeApi } from "../../../libraries/request";
+
 export default class SearchSong {
   constructor() {
-    this.$root = document.getElementById("root");
     this.render();
-    this.$input.addEventListener("keyup", this.search)
+
+    this.$input.addEventListener("keyup", this.search.bind(this));
   }
 
   render() {
-    this.$layer = document.createElement("aside");
+    this.$root = document.getElementById("root");
+    this.$layer = document.createElement("section");
     this.$layer.className = "popup SearchSong";
 
     this.$wrapper = document.createElement("div");
@@ -21,7 +24,16 @@ export default class SearchSong {
     this.$root.appendChild(this.$layer);
   }
 
-  search(e) {
-    console.log(e.target.value)
+  async search(e) {
+    if (e.key === "Enter") {
+      const keyword = e.target.value;
+      const { items, nextPageToken } = await youtubeApi.getSearchResult(keyword);
+      
+      this.searchResult = await new SearchResult({
+        $page: this.$layer,
+        items,
+        nextPageToken,
+      });
+    }
   }
 }
