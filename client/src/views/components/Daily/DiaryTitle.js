@@ -1,4 +1,4 @@
-import DiaryTextModule from "./DiaryTextModule";
+import DiaryTextModule from "../common/DiaryTextModule";
 
 export default class DiaryTitle extends DiaryTextModule {
   constructor({ $page, data: { id, title } }) {
