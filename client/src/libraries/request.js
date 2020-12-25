@@ -22,4 +22,6 @@ export const api = {
     request("put", `${apiBaseUrl}/daily/${diaryId}`, colorId),
   editText: (id, text) => 
     request("put", `${apiBaseUrl}/daily/${id}`, text),
+  createDiary: (data) =>
+    request("post", `${apiBaseUrl}/daily`, data)
 };

@@ -1,7 +1,5 @@
 import goBack from "../../../images/goBack.svg";
 import { api } from "../../../libraries/request.js";
-// import { apiBaseUrl } from "../../../libraries/constants.js";
-// const axios = require("axios");
 
 export default class DiaryHeader {
   constructor({ $nav, data: { type, date } }) {
@@ -38,10 +36,8 @@ export default class DiaryHeader {
 
   async create(data) {
     try {
-      const result = await api.createDiary(data);
-      if (result.status === 201) {
-        return { status: 201, message: "등록이 완료되었습니다." };
-      }
+      await api.createDiary(data);
+      return { status: 201, message: "등록이 완료되었습니다." };
     } catch (e) {
       // 추후 에러 처리
       const error = e.response;
