@@ -1,5 +1,6 @@
 @import "./styles/theme.css";
 @import "./styles/diary.css";
+@import "./styles/search.css";
 
 * {
   margin: 0;

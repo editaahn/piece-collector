@@ -1,5 +1,6 @@
 import headImg from "../../../images/daily_head_song.svg";
-import Component from "../../../state-management/Component";
+import SearchSong from "./SearchSong.js";
+import addButtonImg from "../../../images/daily_addsong.svg";
 
 export default class DiarySong {
   constructor({ $page, data: { songs } }) {
@@ -7,7 +8,10 @@ export default class DiarySong {
     this.songs = songs;
 
     this.render();
+
+    this.$add.addEventListener("click", this.add.bind(this));
   }
+
   render() {
     this.$wrapper = document.createElement("section");
     this.$wrapper.className = "Diary__wrapper";
@@ -23,8 +27,17 @@ export default class DiarySong {
       )
       .join("");
 
+    this.$add = document.createElement("button");
+    this.$add.className = "Diary__addSong";
+    this.$add.innerHTML = `<img src="${addButtonImg}" alt="add song"/>`;
+
     this.$wrapper.appendChild(this.$heading);
     this.$wrapper.appendChild(this.$songList);
+    this.$wrapper.appendChild(this.$add);
     this.$page.appendChild(this.$wrapper);
+  }
+
+  add() {
+    this.searchSong = new SearchSong();
   }
 }

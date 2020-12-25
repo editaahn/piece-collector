@@ -5,10 +5,14 @@
 
 :root[theme="2"] {
   --main-color: #CCDFE0;
-  --surface-color: #CCDFE04D;
+  --surface-color: #EBEDEE;
 }
 
 :root[theme="3"] {
   --main-color: #D2D2D2;
   --surface-color: #D2D2D24D;
+}
+
+.popup {
+  --surface-color: #EBEDEE;
 }
