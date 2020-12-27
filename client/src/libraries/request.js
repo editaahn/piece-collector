@@ -1,9 +1,14 @@
 import { youtubeApiKey } from "./secretKey";
-
 const axios = require("axios");
+
 const apiBaseUrl = "http://localhost:3000";
 const youtubeApiBaseUrl = "https://www.googleapis.com/youtube/v3";
-const musicCategoryId = 10;
+const youtubeParams = {
+  musicCategoryId: 10,
+  fields: ["items", "nextPageToken"],
+  maxResults: 10,
+  order: "viewCount"
+};
 
 export const errorMessage = {
   400: "잘못된 요청으로 인하여 서버가 요청을 이해할 수 없습니다.",
@@ -30,9 +35,13 @@ export const api = {
 };
 
 export const youtubeApi = {
-  getSearchResult: (keyword) =>
+  search: (keyword) =>
     request(
       "get",
-      `${youtubeApiBaseUrl}/search?part=snippet&key=${youtubeApiKey}&q=${keyword}&type=video&videoCategoryId=${musicCategoryId}`
+      `${youtubeApiBaseUrl}/search?part=snippet&key=${youtubeApiKey}&q=${keyword}&type=video&videoCategoryId=${
+        youtubeParams.musicCategoryId
+      }&fields=${youtubeParams.fields.join(",")}&maxResults=${
+        youtubeParams.maxResults
+      }&order=${youtubeParams.order}`
     ),
 };

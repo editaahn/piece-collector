@@ -1,5 +1,5 @@
 import headImg from "../../../images/daily_head_song.svg";
-import SearchSong from "../Search/SearchSong.js";
+import SearchSong from "../../pages/SearchSong.js";
 import addButtonImg from "../../../images/daily_addsong.svg";
 
 export default class DiarySong {

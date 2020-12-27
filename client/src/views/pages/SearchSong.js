@@ -1,4 +1,5 @@
-import { youtubeApi } from "../../../libraries/request";
+import { youtubeApi } from "../../libraries/request";
+import SearchResult from "../components/Search/SearchResult";
 
 export default class SearchSong {
   constructor() {
@@ -18,22 +19,22 @@ export default class SearchSong {
     this.$input = document.createElement("input");
     this.$input.className = "Search__input";
     this.$input.placeholder = "Type Keyword & Press Enter";
-
+    
     this.$wrapper.appendChild(this.$input);
     this.$layer.appendChild(this.$wrapper);
     this.$root.appendChild(this.$layer);
+
+    this.searchResult = new SearchResult({
+      $layer: this.$layer,
+    });
   }
 
   async search(e) {
     if (e.key === "Enter") {
       const keyword = e.target.value;
-      const { items, nextPageToken } = await youtubeApi.getSearchResult(keyword);
-      
-      this.searchResult = await new SearchResult({
-        $page: this.$layer,
-        items,
-        nextPageToken,
-      });
+      const { items, nextPageToken } = await youtubeApi.search(keyword);
+      this.searchResult.setPage(0); // 페이지 초기화
+      this.searchResult.setData({ items, nextPageToken }); // 데이터 주입
     }
   }
 }
