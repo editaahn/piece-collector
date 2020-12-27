@@ -1,13 +1,13 @@
 export default class SearchResult {
-  constructor({ $layer }) {
+  constructor({ $layer, select }) {
     this.$layer = $layer;
+    this.select = select;
 
     this.currentPage = 0;
-    this.selectedSongs = [];
 
     this.$list = document.createElement("ul");
     this.$list.className = "Search__list";
-    this.$list.addEventListener("click", this.select.bind(this));
+    this.$list.addEventListener("click", this.clickSong.bind(this));
 
     this.$layer.appendChild(this.$list);
   }
@@ -27,7 +27,7 @@ export default class SearchResult {
     }
 
     this.appendItems(items);
-    this.setPage(this.currentPage+1);
+    this.setPage(this.currentPage + 1);
   }
 
   appendItems(items) {
@@ -37,7 +37,6 @@ export default class SearchResult {
         <li 
           class="Search__song" 
           data-videoid="${song.id.videoId}" 
-          data-title="${song.snippet.title}"
         >
           <div class="Search__thumbnail">
             <img 
@@ -47,7 +46,9 @@ export default class SearchResult {
           </div>
           <div class="Search__songInfo">
             <strong class="Search__songTitle">${song.snippet.title}</strong>
-            <e class="Search__songReleased">${song.snippet.publishedAt.slice(0,7)}</e>
+            <e class="Search__songReleased">
+              ${song.snippet.publishedAt.slice(0, 10)}
+            </e>
           </div>
         </li>
       `
@@ -55,14 +56,18 @@ export default class SearchResult {
       .join("");
   }
 
-  select(e) {
+  clickSong(e) {
     if (e.target.closest("LI").className === "Search__song") {
       const song = e.target.closest("LI");
       const data = {
-        videoId: song.dataset.videoid,
-        title: song.dataset.title,
+        video_id: song.dataset.videoid,
+        title: song.querySelector(".Search__songTitle").textContent,
+        released_date: new Date(
+          song.querySelector(".Search__songReleased").textContent
+        ),
       };
-      this.selectedSongs.push(data); // 추가할 아이템들
+
+      this.select(data);
     }
   }
 }
