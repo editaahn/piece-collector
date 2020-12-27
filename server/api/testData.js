@@ -29,13 +29,13 @@ exports.diaries = [
 ];
 exports.songs = [
   {
-    title: "Song1 Title",
-    artist: "Fabulous Artist",
+    title: "Fabulous Artist - Song1 Title",
+    // artist: "Fabulous Artist",
     released_date: new Date(1990, 4, 10),
   },
   {
-    title: "Song2 Title",
-    artist: "Fabulous Artist",
+    title: "Fabulous Artist - Song2 Title",
+    // artist: "Fabulous Artist",
     released_date: new Date(1990, 8, 1),
   },
 ];
