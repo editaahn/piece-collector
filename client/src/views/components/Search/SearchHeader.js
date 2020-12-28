@@ -9,9 +9,13 @@ export default class SearchHeader {
 
     this.render();
     this.$submit?.addEventListener("click", this.submit.bind(this));
+    this.$close.addEventListener("click", this.close.bind(this));
   } 
 
   render() {
+    this.$header = document.createElement("header");
+    this.$header.className = "Search__header";
+
     this.$title = document.createElement("h1");
     this.$title.className = "Search__title";
     this.$title.textContent = "Search Songs";
@@ -30,9 +34,10 @@ export default class SearchHeader {
     this.$submitDiv.appendChild(this.$submit);
     this.disableSubmit(true);
 
-    this.$layer.appendChild(this.$close);
-    this.$layer.appendChild(this.$title);
-    this.$layer.appendChild(this.$submitDiv);
+    this.$header.appendChild(this.$close);
+    this.$header.appendChild(this.$title);
+    this.$header.appendChild(this.$submitDiv);
+    this.$layer.appendChild(this.$header);
 
   }
 
