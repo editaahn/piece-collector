@@ -1,5 +1,5 @@
 import headImg from "../../../images/daily_head_article.svg";
-import DiaryTextModule from "./DiaryTextModule";
+import DiaryTextModule from "../common/DiaryTextModule";
 
 export default class DiaryArticle extends DiaryTextModule {
   constructor({ $page, data: { id, article } }) {

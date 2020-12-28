@@ -7,5 +7,6 @@ export default {
   },
   newDairyDate: null,
   isToastOpen: false,
-  colors: []
+  colors: [],
+  songsForNewDiary: [],
 };

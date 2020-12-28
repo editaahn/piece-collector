@@ -1,5 +1,6 @@
 import goBack from "../../../images/goBack.svg";
 import { api } from "../../../libraries/request.js";
+import store from "../../../state-management/index.js";
 
 export default class DiaryHeader {
   constructor({ $nav, data: { type, date } }) {
@@ -9,6 +10,7 @@ export default class DiaryHeader {
 
     this.render();
     this.$submit?.addEventListener("click", this.submit.bind(this));
+    this.$goBack.addEventListener("click", this.goBack);
   }
 
   render() {
@@ -52,7 +54,7 @@ export default class DiaryHeader {
       title: document.querySelector(".Diary__title")?.textContent,
       colorId: document.querySelector(".Diary__color--selected")?.dataset
         .colorid,
-      songs: [],
+      songs: store.state.songsForNewDiary,
       article: document.querySelector(".Diary__article")?.innerHTML,
     };
 
@@ -62,6 +64,7 @@ export default class DiaryHeader {
       this.create(data).then((response) => {
         alert(response.message); // 토스트팝업으로 변경 필요
         this.$submit?.remove();
+        store.dispatch("addSongsForNewDiary", []);
       });
     } else {
       alert("내용을 1개 입력해주세요.");
@@ -74,5 +77,9 @@ export default class DiaryHeader {
       return true;
     }
     return false;
+  }
+
+  goBack() {
+    window.history.back();
   }
 }

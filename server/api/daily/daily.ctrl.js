@@ -88,4 +88,38 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { show, create, destroy, update };
+const updateSong = async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
+  if (Number.isNaN(id) || JSON.stringify(req.body) === "{}") {
+    return res.status(400).end();
+  }
+
+  const { songs } = req.body;
+  const newSongs = songs.filter((song) => !song.hasOwnProperty("id"));
+  const registeredSongs = songs.filter((song) => song.hasOwnProperty("id"));
+
+  try {
+    const diary = await Diary.findOne({ where: { id } });
+    if (!diary) {
+      throw new RangeError(404);
+    }
+
+    const createdSongs = await Song.bulkCreate(newSongs); // Song에 먼저 등록 필요한 곡들
+    await diary.addSongs(
+      [...createdSongs, ...registeredSongs].map((song) => song.id)
+    );
+
+    const response = await Diary.findOne({
+      where: { id },
+      attributes: ["id"],
+      include: { model: Song, attributes: ["id"] },
+    });
+
+    await res.status(200).json(response).end();
+  } catch (err) {
+    res.status(err instanceof RangeError ? 404 : 500).end();
+  }
+};
+
+module.exports = { show, create, destroy, update, updateSong };

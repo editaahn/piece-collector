@@ -24,6 +24,7 @@ button {
   border: 0;
   background: none;
   cursor: pointer;
+  outline-style: none;
 }
 
 #root {
@@ -33,4 +34,19 @@ button {
 
 .page {
   min-height: 100vh;
+}
+
+.popup {
+  padding: 0 20px;
+  width: 100vw;
+  min-height: 100vh;
+  
+  box-sizing: border-box;
+
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+
+  background: var(--surface-color);
 }

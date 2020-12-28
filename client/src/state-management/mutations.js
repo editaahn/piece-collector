@@ -20,4 +20,7 @@ export default {
   getColors(state, payload) {
     return ["colors", payload];
   },
+  addSongsForNewDiary(state, payload) {
+    return ["songsForNewDiary", payload];
+  },
 };
