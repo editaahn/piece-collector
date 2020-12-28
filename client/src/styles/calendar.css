@@ -24,10 +24,11 @@
 .Calendar__week {
   height: calc(100% / 6);
 }
-.Calendar__week > li:first-child {
+.Calendar__week > td:first-child {
   border-left: 0;
+  color: #d52c2c;
 }
-.Calendar__week > li:last-child {
+.Calendar__week > td:last-child {
   border-right: 0;
 }
 
