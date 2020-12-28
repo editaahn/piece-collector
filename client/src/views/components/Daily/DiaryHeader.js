@@ -10,6 +10,7 @@ export default class DiaryHeader {
 
     this.render();
     this.$submit?.addEventListener("click", this.submit.bind(this));
+    this.$goBack.addEventListener("click", this.goBack);
   }
 
   render() {
@@ -76,5 +77,9 @@ export default class DiaryHeader {
       return true;
     }
     return false;
+  }
+
+  goBack() {
+    window.history.back();
   }
 }
