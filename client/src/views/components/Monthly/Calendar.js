@@ -50,7 +50,7 @@ export default class Calendar {
         }
 
         const writtenDiary = this.diaries.find(
-          (diary) => diary.date === hyphenDate(year, month, dateCount)
+          (diary) => parseInt(diary.date.slice(-2)) === dateCount
         );
         if (writtenDiary) {
           $td.className = "Calendar__day--written";
@@ -72,6 +72,8 @@ export default class Calendar {
     const clickedId = this.diaries.find(
       (diary) => parseInt(diary.date.slice(-2)) === clickedDate
     )?.id;
+
+    console.log(clickedDate, clickedId);
 
     if (clickedId) {
       // diaries가 등록된 날이면 조회 화면으로 이동

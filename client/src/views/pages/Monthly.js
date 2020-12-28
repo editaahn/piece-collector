@@ -23,7 +23,7 @@ export default class Monthly extends Component {
     try {
       const diaries = await api.getMonthlyData(
         monthlyDate.year,
-        monthlyDate.month
+        monthlyDate.month + 1
       );
 
       this.MonthChanger = new MonthChanger({

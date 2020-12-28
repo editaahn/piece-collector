@@ -13,6 +13,9 @@ export default class MonthPicker extends Component {
     this.$wrapper = document.createElement("article");
     this.$wrapper.className = "MonthPicker__wrapper";
 
+    this.$selects = document.createElement("div");
+    this.$selects.className = "MonthPicker__selects";
+
     this.$selectYear = document.createElement("select");
     this.$selectYear.className = "MonthPicker__select--year";
     this.$selectMonth = document.createElement("select");
@@ -22,9 +25,10 @@ export default class MonthPicker extends Component {
     this.$done.className = "MonthPicker__done";
     this.$done.textContent = "done";
 
-    this.$monthPicker.appendChild(this.$done);
-    this.$monthPicker.appendChild(this.$selectYear);
-    this.$monthPicker.appendChild(this.$selectMonth);
+    this.$wrapper.appendChild(this.$selectYear);
+    this.$wrapper.appendChild(this.$selectMonth);
+    this.$wrapper.appendChild(this.$done);
+    this.$monthPicker.appendChild(this.$wrapper);
 
     this.$monthPicker.addEventListener("click", (e) => this.close(e));
     this.$monthPicker.addEventListener("change", (e) => this.change(e));
@@ -55,7 +59,7 @@ export default class MonthPicker extends Component {
       .fill("")
       .map(
         (_, monthCount) =>
-          `<option ${monthCount + 1 === month ? "selected" : ""}> 
+          `<option ${monthCount === month ? "selected" : ""}> 
             ${monthCount + 1}
           </option>`
       )
@@ -89,7 +93,7 @@ export default class MonthPicker extends Component {
     if (className === "MonthPicker__done") {
       store.dispatch(
         "setMonthlyDate",
-        new Date(this.selectedOption.year, this.selectedOption.month - 1)
+        new Date(this.selectedOption.year, this.selectedOption.month - 2)
       );
       closeMonthPicker();
     }

@@ -18,7 +18,7 @@ export default class MonthChanger extends Component {
   render() {
     const { year, month } = store.state.monthlyDate;
 
-    this.$month.textContent = `${year} / ${month}`;
+    this.$month.textContent = `${year} / ${month + 1}`;
 
     this.$monthChanger.appendChild(this.$month);
     this.$page.appendChild(this.$monthChanger);
