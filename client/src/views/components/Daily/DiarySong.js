@@ -2,6 +2,7 @@ import headImg from "../../../images/daily_head_song.svg";
 import SearchSong from "../../pages/SearchSong.js";
 import addButtonImg from "../../../images/daily_addsong.svg";
 import { api } from "../../../libraries/request.js";
+import store from "../../../state-management/index.js";
 
 export default class DiarySong {
   constructor({ $page, data: { id, songs } }) {
@@ -9,7 +10,7 @@ export default class DiarySong {
     this.id = id;
     this.songs = songs;
 
-    this.addSongs = this.addSongs.bind(this)
+    this.addSongs = this.addSongs.bind(this);
 
     this.render();
     this.$add.addEventListener("click", this.searchSong.bind(this));
@@ -45,14 +46,15 @@ export default class DiarySong {
   addSongs(newSongs) {
     this.songs = newSongs;
     this.appendSongs(newSongs);
-    api.addSongs(this.id, { songs: this.songs });
+
+    this.id
+      ? api.addSongs(this.id, { songs: this.songs }) // 등록된 다이어리를 수정할 때 DB에 직접 추가
+      : store.dispatch("addSongsForNewDiary", newSongs); // 다이어리를 신규 등록할 때 state에만 추가
   }
 
   appendSongs(songs) {
     this.$songList.innerHTML += songs
-      .map(
-        (song) => `<li class="Diary__song">${song.title}</li>`
-      )
+      .map((song) => `<li class="Diary__song">${song.title}</li>`)
       .join("");
   }
 }

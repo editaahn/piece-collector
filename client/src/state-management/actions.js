@@ -15,4 +15,7 @@ export default {
     const payload = await axios.get(`${apiBaseUrl}/color/list`);
     await context.commit("getColors", payload.data);
   },
+  addSongsForNewDiary(context, payload) {
+    context.commit("addSongsForNewDiary", payload);
+  },
 };
