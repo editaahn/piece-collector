@@ -1,6 +1,6 @@
 import store from "./state-management/index.js";
 import "./main.css";
-import Toast from "./views/components/Monthly/Toast.js";
+import MonthPicker from "./views/components/Monthly/MonthPicker.js";
 import { onNavigate, initialRoutes, routes } from "./router.js";
 import { parsePath } from "./libraries/parsePath";
 
@@ -8,7 +8,7 @@ class App {
   constructor() {
     this.routes = routes;
     initialRoutes();
-    this.toast = new Toast();
+    this.toast = new MonthPicker();
     store.dispatch("getColors");
   }
 }
