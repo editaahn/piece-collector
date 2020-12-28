@@ -56,8 +56,8 @@ describe("POST /daily는", () => {
     article: "일기입니다.",
     songs: [
       {
-        title: "song1",
-        artist: "artist1",
+        title: "artist1 - song1",
+        // artist: "artist1",
         released_date: new Date(1995, 9, 9),
       },
       {
@@ -131,7 +131,7 @@ describe("PUT /daily/:id는", () => {
         .put("/daily/2")
         .send({ title, article })
         .end((err, res) => {
-          console.log(res.body);
+          // console.log(res.body);
           res.body.should.have.property("title", title);
           done();
         });
@@ -146,6 +146,45 @@ describe("PUT /daily/:id는", () => {
     });
     it("body에 property가 없는 경우 400을 반환한다.", (done) => {
       request(app).put("/daily/1").send({}).expect(400).end(done);
+    });
+  });
+});
+
+describe("PUT /daily/:id/song은", () => {
+  const songs = [
+    { id: 2 },
+    {
+      title: "Katy Perry - Smile",
+      video_id: "vZA5heWazIQ",
+      released_date: new Date(2020, 7, 14),
+    },
+    {
+      title: "Katy Perry - Smile22",
+      video_id: "vZA5heWazIQ",
+      released_date: new Date(2020, 7, 14),
+    },
+  ];
+  describe("성공 시", () => {
+    it("변경된 값을 응답한다.", (done) => {
+      request(app)
+        .put("/daily/2/song")
+        .send({ songs })
+        .end((err, res) => {
+          // console.log(res.body, res.status); 
+          res.body.songs.should.have.length(4);
+          done();
+        });
+    });
+  });
+  describe("실패 시", () => {
+    it("파라미터 id값이 DB에 존재하지 않을 시 404을 반환한다.", (done) => {
+      request(app).put("/daily/1000/song").send({ songs }).expect(404).end(done);
+    });
+    it("id가 숫자가 아닌 경우 400을 반환한다.", (done) => {
+      request(app).put("/daily/none/song").send({ songs }).expect(400).end(done);
+    });
+    it("body에 property가 없는 경우 400을 반환한다.", (done) => {
+      request(app).put("/daily/2/song").send({}).expect(400).end(done);
     });
   });
 });
