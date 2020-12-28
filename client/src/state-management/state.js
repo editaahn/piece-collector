@@ -2,8 +2,8 @@ const initialDate = new Date();
 
 export default {
   monthlyDate: {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
+    year: initialDate.getFullYear(),
+    month: initialDate.getMonth(),
   },
   newDairyDate: null,
   isMonthPickerOpen: false,

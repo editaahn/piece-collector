@@ -67,11 +67,14 @@ export default class MonthPicker extends Component {
   }
 
   change(e) {
-    const propertyName = e.target.className.replace(
+    const propertyName = e.target.className.replace( // 'year' or 'month'
       "MonthPicker__select--",
       ""
     );
-    this.selectedOption[propertyName] = parseInt(e.target.value);
+    this.selectedOption[propertyName] =
+      propertyName === "month"
+        ? parseInt(e.target.value - 1)
+        : parseInt(e.target.value);
   }
 
   render() {
@@ -93,7 +96,7 @@ export default class MonthPicker extends Component {
     if (className === "MonthPicker__done") {
       store.dispatch(
         "setMonthlyDate",
-        new Date(this.selectedOption.year, this.selectedOption.month - 2)
+        new Date(this.selectedOption.year, this.selectedOption.month - 1)
       );
       closeMonthPicker();
     }
