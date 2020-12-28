@@ -7,10 +7,10 @@ export default class MonthChanger extends Component {
     this.$page = $page;
 
     this.$monthChanger = document.createElement("div");
-    this.$monthChanger.className = "MonthPicker";
+    this.$monthChanger.className = "MonthChanger";
 
     this.$month = document.createElement("h1");
-    this.$month.className = "MonthPicker__month";
+    this.$month.className = "MonthChanger__month";
 
     this.render();
     this.onClickMonth();

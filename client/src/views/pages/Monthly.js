@@ -1,7 +1,7 @@
 import Calendar from "../components/Monthly/Calendar";
 import Component from "../../state-management/Component.js";
 import store from "../../state-management/index.js";
-import MonthPicker from "../components/Monthly/MonthChanger";
+import MonthChanger from "../components/Monthly/MonthChanger";
 import ErrorPage from "./ErrorPage";
 import { api } from "../../libraries/request.js";
 
@@ -26,7 +26,7 @@ export default class Monthly extends Component {
         monthlyDate.month
       );
 
-      this.MonthPicker = new MonthPicker({
+      this.MonthChanger = new MonthChanger({
         $page,
       });
 
