@@ -19,7 +19,8 @@
   align-items: center;
 }
 
-.Diary__goBack, .Search__close {
+.Diary__goBack,
+.Search__close {
   width: 40px;
 }
 
@@ -41,7 +42,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   text-align: right;
 }
 
