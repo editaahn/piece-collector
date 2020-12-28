@@ -7,7 +7,6 @@ export default class Calendar {
     this.$page = $page;
     this.date = date;
     this.diaries = diaries;
-    console.log(this.diaries);
 
     this.setMonthInfo();
     this.render();
