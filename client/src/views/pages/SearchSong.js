@@ -64,11 +64,11 @@ export default class SearchSong {
 
   select(data) {
     const isIncluded = this.selectedSongs.some(
-      (song) => song.videoId === data.videoId
+      (song) => song.video_id === data.video_id
     );
 
     this.selectedSongs = isIncluded
-      ? this.selectedSongs.filter((song) => song.videoId !== data.videoId) // 선택된 곡 재선택 시 선택 목록에서 빼기
+      ? this.selectedSongs.filter((song) => song.video_id !== data.video_id) // 선택된 곡 재선택 시 선택 목록에서 빼기
       : this.selectedSongs.concat(data); // 선택 목록에 넣기
 
     const isSongSelected = this.getSelected().length;
