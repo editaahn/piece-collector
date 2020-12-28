@@ -1,6 +1,5 @@
 import { onNavigate } from "../../../router.js";
 import store from "../../../state-management/index.js";
-import { hyphenDate } from "../../../libraries/hyphenDate.js";
 
 export default class Calendar {
   constructor({ $page, data: { date, diaries } }) {
@@ -43,11 +42,6 @@ export default class Calendar {
         const $td = document.createElement("td");
         $td.className = "Calendar__day";
 
-        const thisDay = new Date(year, month, dateCount).getDay() + 1; // 요일
-        if (thisDay === day) {
-          $td.textContent = dateCount;
-          dateCount++;
-        }
 
         const writtenDiary = this.diaries.find(
           (diary) => parseInt(diary.date.slice(-2)) === dateCount
@@ -55,6 +49,12 @@ export default class Calendar {
         if (writtenDiary) {
           $td.className = "Calendar__day--written";
           $td.style.background = "#" + writtenDiary.color.hex;
+        }
+
+        const thisDay = new Date(year, month, dateCount).getDay() + 1; // 요일
+        if (thisDay === day) {
+          $td.textContent = dateCount;
+          dateCount++;
         }
 
         $tr.appendChild($td);
@@ -72,8 +72,6 @@ export default class Calendar {
     const clickedId = this.diaries.find(
       (diary) => parseInt(diary.date.slice(-2)) === clickedDate
     )?.id;
-
-    console.log(clickedDate, clickedId);
 
     if (clickedId) {
       // diaries가 등록된 날이면 조회 화면으로 이동
