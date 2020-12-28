@@ -14,8 +14,8 @@ export default {
       `${state.monthlyDate.year}-${state.monthlyDate.month}-${payload}`,
     ];
   },
-  toggleToast(state, payload) {
-    return ["isToastOpen", payload];
+  toggleMonthPicker(state, payload) {
+    return ["isMonthPickerOpen", payload];
   },
   getColors(state, payload) {
     return ["colors", payload];

@@ -6,7 +6,7 @@ export default {
     month: new Date().getMonth() + 1,
   },
   newDairyDate: null,
-  isToastOpen: false,
+  isMonthPickerOpen: false,
   colors: [],
   songsForNewDiary: [],
 };

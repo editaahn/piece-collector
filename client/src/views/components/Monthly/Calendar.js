@@ -22,6 +22,7 @@ export default class Calendar {
 
   render() {
     this.$table = document.createElement("table");
+    this.$table.className = "Calendar";
 
     const { year, month } = this.date;
     const WEEKS = 6; // 6주
@@ -35,6 +36,7 @@ export default class Calendar {
       }
 
       const $tr = document.createElement("tr");
+      $tr.className = "Calendar__week";
       for (let day = 1; day <= DAYS; day++) {
         if (dateCount > this.lastDate) {
           break;
@@ -42,9 +44,10 @@ export default class Calendar {
 
         const thisDay = new Date(year, month, dateCount).getDay() + 1; // 요일
         const $td = document.createElement("td");
+        $td.className = "Calendar__day";
 
         if (this.writtenDays.includes(dateCount)) {
-          $td.style.backgroundColor = "red";
+          $td.className = "Calendar__day--written";
         }
         if (thisDay === day) {
           $td.textContent = dateCount;
