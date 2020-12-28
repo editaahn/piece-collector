@@ -45,7 +45,7 @@ export default class DiarySong {
   addSongs(newSongs) {
     this.songs = newSongs;
     this.appendSongs(newSongs);
-    api.editDailyData(this.id, { songs: this.songs });
+    api.addSongs(this.id, { songs: this.songs });
   }
 
   appendSongs(songs) {

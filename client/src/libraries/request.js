@@ -30,6 +30,8 @@ export const api = {
     request("put", `${apiBaseUrl}/daily/${diaryId}`, colorId),
   editText: (id, text) => 
     request("put", `${apiBaseUrl}/daily/${id}`, text),
+  addSongs: (id, songs) =>
+    request("put", `${apiBaseUrl}/daily/${id}/song`, songs),
   createDiary: (data) => 
     request("post", `${apiBaseUrl}/daily`, data)
 };
