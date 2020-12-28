@@ -4,24 +4,27 @@ import store from "../../../state-management/index.js";
 export default class MonthPicker extends Component {
   constructor() {
     super({ store, keys: ["isMonthPickerOpen"] });
-    this.$root = document.getElementById("root");
-    this.$monthPicker = document.createElement("aside");
-    this.$wrapper = document.createElement("article");
-    this.$selectYear = document.createElement("select");
-    this.$selectMonth = document.createElement("select");
-    this.$done = document.createElement("button");
 
+    this.$root = document.getElementById("root");
+
+    this.$monthPicker = document.createElement("aside");
+    this.$monthPicker.className = "MonthPicker";
+
+    this.$wrapper = document.createElement("article");
+    this.$wrapper.className = "MonthPicker__wrapper";
+
+    this.$selectYear = document.createElement("select");
+    this.$selectYear.className = "MonthPicker__select--year";
+    this.$selectMonth = document.createElement("select");
+    this.$selectMonth.className = "MonthPicker__select--month";
+
+    this.$done = document.createElement("button");
+    this.$done.className = "MonthPicker__done";
     this.$done.textContent = "done";
 
-    this.$monthPicker.className = "MonthPicker";
-    this.$wrapper.className = "MonthPicker__wrapper";
-    this.$selectYear.className = "MonthPicker__select--year";
-    this.$selectMonth.className = "MonthPicker__select--month";
-    this.$done.className = "MonthPicker__done";
-
+    this.$monthPicker.appendChild(this.$done);
     this.$monthPicker.appendChild(this.$selectYear);
     this.$monthPicker.appendChild(this.$selectMonth);
-    this.$monthPicker.appendChild(this.$done);
 
     this.$monthPicker.addEventListener("click", (e) => this.close(e));
     this.$monthPicker.addEventListener("change", (e) => this.change(e));
