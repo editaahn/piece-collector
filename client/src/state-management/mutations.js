@@ -1,3 +1,5 @@
+import { hyphenDate } from "../libraries/hyphenDate";
+
 export default {
   setMonthlyDate(state, payload) {
     return [
@@ -11,11 +13,11 @@ export default {
   setNewDiaryDate(state, payload) {
     return [
       "newDairyDate",
-      `${state.monthlyDate.year}-${state.monthlyDate.month}-${payload}`,
+      hyphenDate(state.monthlyDate.year, state.monthlyDate.month + 1, payload),
     ];
   },
-  toggleToast(state, payload) {
-    return ["isToastOpen", payload];
+  toggleMonthPicker(state, payload) {
+    return ["isMonthPickerOpen", payload];
   },
   getColors(state, payload) {
     return ["colors", payload];

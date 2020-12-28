@@ -6,9 +6,6 @@ export default class Calendar {
     this.$page = $page;
     this.date = date;
     this.diaries = diaries;
-    this.writtenDays = this.diaries.map((diary) =>
-      parseInt(diary.date.slice(-2))
-    );
 
     this.setMonthInfo();
     this.render();
@@ -22,6 +19,7 @@ export default class Calendar {
 
   render() {
     this.$table = document.createElement("table");
+    this.$table.className = "Calendar";
 
     const { year, month } = this.date;
     const WEEKS = 6; // 6주
@@ -35,17 +33,25 @@ export default class Calendar {
       }
 
       const $tr = document.createElement("tr");
+      $tr.className = "Calendar__week";
       for (let day = 1; day <= DAYS; day++) {
         if (dateCount > this.lastDate) {
           break;
         }
 
-        const thisDay = new Date(year, month, dateCount).getDay() + 1; // 요일
         const $td = document.createElement("td");
+        $td.className = "Calendar__day";
 
-        if (this.writtenDays.includes(dateCount)) {
-          $td.style.backgroundColor = "red";
+
+        const writtenDiary = this.diaries.find(
+          (diary) => parseInt(diary.date.slice(-2)) === dateCount
+        );
+        if (writtenDiary) {
+          $td.className = "Calendar__day--written";
+          $td.style.background = "#" + writtenDiary.color.hex;
         }
+
+        const thisDay = new Date(year, month, dateCount).getDay() + 1; // 요일
         if (thisDay === day) {
           $td.textContent = dateCount;
           dateCount++;
@@ -67,7 +73,7 @@ export default class Calendar {
       (diary) => parseInt(diary.date.slice(-2)) === clickedDate
     )?.id;
 
-    if (this.writtenDays.includes(clickedDate)) {
+    if (clickedId) {
       // diaries가 등록된 날이면 조회 화면으로 이동
       onNavigate(`/daily/${clickedId}`);
     } else {

@@ -8,8 +8,8 @@ export default {
   setNewDiaryDate(context, payload) {
     context.commit("setNewDiaryDate", payload);
   },
-  toggleToast(context, payload) {
-    context.commit("toggleToast", payload);
+  toggleMonthPicker(context, payload) {
+    context.commit("toggleMonthPicker", payload);
   },
   async getColors(context) {
     const payload = await axios.get(`${apiBaseUrl}/color/list`);

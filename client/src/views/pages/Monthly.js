@@ -1,9 +1,10 @@
 import Calendar from "../components/Monthly/Calendar";
 import Component from "../../state-management/Component.js";
 import store from "../../state-management/index.js";
-import MonthPicker from "../components/Monthly/MonthPicker";
+import MonthChanger from "../components/Monthly/MonthChanger";
 import ErrorPage from "./ErrorPage";
 import { api } from "../../libraries/request.js";
+import { setDocumentTheme } from "../../libraries/themeColor.js";
 
 export default class Monthly extends Component {
   constructor({ $root }) {
@@ -23,10 +24,10 @@ export default class Monthly extends Component {
     try {
       const diaries = await api.getMonthlyData(
         monthlyDate.year,
-        monthlyDate.month
+        monthlyDate.month + 1
       );
 
-      this.MonthPicker = new MonthPicker({
+      this.MonthChanger = new MonthChanger({
         $page,
       });
 
@@ -45,5 +46,7 @@ export default class Monthly extends Component {
     } finally {
       this.$root.appendChild($page);
     }
+
+    setDocumentTheme();
   }
 }
