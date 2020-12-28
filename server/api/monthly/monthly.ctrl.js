@@ -16,8 +16,17 @@ const index = async (req, res) => {
         [Op.lt]: new Date(year, month + 1),
       },
     },
-    attributes: ['id','date'],
-    include: [Song, Color],
+    attributes: ["id", "date", "article"],
+    include: [
+      {
+        model: Song,
+        attributes: ["id"],
+      },
+      {
+        model: Color,
+        attributes: ["hex"],
+      },
+    ],
   });
   res.json(diaries);
 };
