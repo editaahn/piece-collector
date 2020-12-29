@@ -11,8 +11,8 @@
         const videoId = opener.newWindowData.videoId;
         this.uri = {
           app: `YouTubeMusic://watch?v=${videoId}`, // Android: youtube, IOS: youtube music으로 연결됨
-          mobileFallback: `https://youtube.com/watch?v=${videoId}`,
-          desktopFallback: `https://youtube.com/watch?v=${videoId}`,
+          mobileFallback: `https://music.youtube.com/watch?v=${videoId}`,
+          desktopFallback: `https://music.youtube.com/watch?v=${videoId}`,
         };
 
         if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
