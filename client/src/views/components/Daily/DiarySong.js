@@ -14,6 +14,7 @@ export default class DiarySong {
 
     this.render();
     this.$add.addEventListener("click", this.searchSong.bind(this));
+    this.$songList.addEventListener("click", this.clickSong);
   }
 
   render() {
@@ -54,7 +55,23 @@ export default class DiarySong {
 
   appendSongs(songs) {
     this.$songList.innerHTML += songs
-      .map((song) => `<li class="Diary__song">${song.title}</li>`)
+      .map(
+        (song) =>
+          `<li 
+            class="Diary__song" 
+            data-videoid=${song.video_id}
+          >
+            ${song.title}
+          </li>`
+      )
       .join("");
+  }
+
+  clickSong(e) {
+    if (e.target.className === "Diary__song") {
+      window.newWindowData = {};
+      window.newWindowData.videoId = e.target.dataset.videoid;
+      window.open("../../youtubePlayback.html", "_blank");
+    }
   }
 }
