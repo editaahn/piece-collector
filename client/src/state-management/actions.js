@@ -1,5 +1,5 @@
 import { apiBaseUrl } from "../libraries/constants";
-const axios = require("axios");
+import axios from "axios";
 
 export default {
   setMonthlyDate(context, payload) {

@@ -1,5 +1,5 @@
 import { youtubeApiKey } from "./secretKey";
-const axios = require("axios");
+import axios from "axios";
 
 const apiBaseUrl = "http://localhost:3000";
 const youtubeApiBaseUrl = "https://www.googleapis.com/youtube/v3";
