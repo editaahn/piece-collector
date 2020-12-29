@@ -11,6 +11,7 @@ module.exports = {
     main: "./src/app.js",
   },
   output: {
+    publicPath: "/",
     path: path.resolve("./dist"),
     filename: "[name].js",
   },
@@ -58,6 +59,9 @@ module.exports = {
   plugins: [
     new webpack.BannerPlugin({
       banner: `Build Time: ${new Date().toLocaleString()}`,
+    }),
+    new HtmlWebpackPlugin({ // 유튜브 deep link html 생성
+      template: "./src/views/pages/youtubePlayback.html",
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
