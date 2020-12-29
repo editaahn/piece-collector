@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>youtube playback</title>
+  </head>
+  <body>
+    <script>
+      window.onload = () => {
+        const videoId = opener.newWindowData.videoId;
+        this.uri = {
+          app: `YouTubeMusic://watch?v=${videoId}`, // Android: youtube, IOS: youtube music으로 연결됨
+          mobileFallback: `https://youtube.com/watch?v=${videoId}`,
+          desktopFallback: `https://youtube.com/watch?v=${videoId}`,
+        };
+
+        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          window.location = this.uri.app;
+          window.setTimeout(() => {
+            window.location = this.uri.mobileFallback;
+          }, 25);
+        } else {
+          window.location = this.uri.desktopFallback;
+        }
+
+        const killPopup = () => {
+          window.removeEventListener("pagehide", killPopup);
+        };
+        window.addEventListener("pagehide", killPopup);
+
+        opener.newWindowData.videoId = "";
+      };
+    </script>
+  </body>
+</html>
