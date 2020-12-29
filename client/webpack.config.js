@@ -33,6 +33,17 @@ module.exports = {
           limit: 10000, // 10kb 미만은 url 로더가 처리
         },
       },
+      {
+        test: /[^index]\.html/, // index가 아닌 html 에 대해서만 추출함 (ex.새창 띄워야 하는 youtubePlayback의 경우)
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+            },
+          },
+        ],
+      },
       ...(process.env.NODE_ENV === "production"
         ? [
             {
