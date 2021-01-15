@@ -6,8 +6,6 @@ export default class MonthlyHeader {
   constructor({ $nav }) {
     this.$nav = $nav;
 
-    this.isMenuOpen = false;
-
     this.render();
     this.$menuOpener.addEventListener("click", this.openMenu.bind(this));
   }
