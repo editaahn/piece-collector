@@ -7,6 +7,7 @@ export default {
   },
   newDairyDate: null,
   isMonthPickerOpen: false,
+  isMenuOpen: false,
   colors: [],
   songsForNewDiary: [],
 };

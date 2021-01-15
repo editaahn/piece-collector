@@ -18,4 +18,7 @@ export default {
   addSongsForNewDiary(context, payload) {
     context.commit("addSongsForNewDiary", payload);
   },
+  openMenu(context, payload) {
+    context.commit("openMenu", payload);
+  }
 };

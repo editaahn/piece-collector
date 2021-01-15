@@ -2,9 +2,9 @@ import Component from "../../../state-management/Component";
 import store from "../../../state-management/index.js";
 
 export default class MonthChanger extends Component {
-  constructor({ $page }) {
+  constructor({ $nav }) {
     super({ store, keys: ["monthlyDate"] });
-    this.$page = $page;
+    this.$nav = $nav;
 
     this.$monthChanger = document.createElement("div");
     this.$monthChanger.className = "MonthChanger";
@@ -21,7 +21,7 @@ export default class MonthChanger extends Component {
     this.$month.textContent = `${year} / ${month + 1}`;
 
     this.$monthChanger.appendChild(this.$month);
-    this.$page.appendChild(this.$monthChanger);
+    this.$nav.appendChild(this.$monthChanger);
   }
   onClickMonth() {
     this.$monthChanger.addEventListener("click", () => {
