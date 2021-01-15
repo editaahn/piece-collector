@@ -1,5 +1,5 @@
 import menuOpenerImg from "../../../images/monthly_menuHamburger.svg";
-import MonthChanger from "./MonthChanger.js";
+import CalendarTitle from "./CalendarTitle.js";
 import store from "../../../state-management/index.js";
 
 export default class MonthlyHeader {
@@ -17,7 +17,7 @@ export default class MonthlyHeader {
 
     this.$nav.appendChild(this.$menuOpener);
 
-    this.monthChanger = new MonthChanger({
+    this.calendarTitle = new CalendarTitle({
       $nav: this.$nav,
     });
   }

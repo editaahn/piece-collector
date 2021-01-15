@@ -3,11 +3,11 @@
   justify-content: space-between;
 }
 
-.MonthChanger {
+.CalendarTitle {
   height: 63px;
 }
 
-.MonthChanger__month {
+.CalendarTitle__month {
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
