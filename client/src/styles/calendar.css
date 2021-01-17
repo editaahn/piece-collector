@@ -46,16 +46,6 @@
   border: 1px solid #ffffff;
 }
 
-.MonthPicker {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  background: #00000040;
-}
-
 .MonthPicker__wrapper {
   position: absolute;
   bottom: 0;

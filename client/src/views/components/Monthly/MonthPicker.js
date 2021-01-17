@@ -8,7 +8,7 @@ export default class MonthPicker extends Component {
     this.$root = document.getElementById("root");
 
     this.$monthPicker = document.createElement("aside");
-    this.$monthPicker.className = "MonthPicker";
+    this.$monthPicker.className = "modal MonthPicker";
 
     this.$wrapper = document.createElement("article");
     this.$wrapper.className = "MonthPicker__wrapper";
