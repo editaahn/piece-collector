@@ -1,6 +1,7 @@
 @import "./styles/theme.css";
 @import "./styles/calendar.css";
 @import "./styles/diary.css";
+@import "./styles/sideMenu.css";
 
 * {
   margin: 0;
@@ -55,4 +56,17 @@ button {
   left: 0;
 
   background: var(--surface-color);
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+
+  background: #00000040;
+
+  display: none;
 }

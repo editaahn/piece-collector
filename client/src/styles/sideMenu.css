@@ -1,0 +1,13 @@
+.SideMenu__wrapper {
+  width: 300px;
+  height: 100vh;
+
+  background: #fff;
+  
+  position: absolute;
+  left: -300px;
+  top: 0;
+  z-index: 10;
+
+  transition: all 0.5s;
+}
