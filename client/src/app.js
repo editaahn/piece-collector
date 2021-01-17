@@ -9,7 +9,7 @@ class App {
   constructor() {
     this.routes = routes;
     initialRoutes();
-    this.toast = new MonthPicker();
+    this.monthPicker = new MonthPicker();
     this.sideMenu = new SideMenu();
     store.dispatch("getColors");
   }
