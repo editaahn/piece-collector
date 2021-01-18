@@ -7,6 +7,7 @@ const session = require("express-session");
 const monthlyRouter = require("./api/monthly");
 const dailyRouter = require("./api/daily");
 const colorRouter = require("./api/color");
+require('dotenv').config();
 
 if (process.env.NODE_ENV !== "test") {
   app.use(morgan("dev"));
@@ -15,6 +16,18 @@ if (process.env.NODE_ENV !== "test") {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+    },
+  })
+);
 
 // routers
 app.use("/monthly", monthlyRouter);
