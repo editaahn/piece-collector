@@ -15,6 +15,15 @@ module.exports = (sequelize, DataTypes) =>
         type: DataTypes.STRING(50),
         allowNull: false,
       },
+      provider: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        defaultValue: "local",
+      },
+      snsId: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+      },
     },
-    { timestamps: true }
+    { timestamps: true, paranoid: true } // paranoid 설정 시, destroy 시 data를 직접 삭제하지 않고 deletedAt을 추가
   );
