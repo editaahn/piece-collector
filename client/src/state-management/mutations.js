@@ -25,4 +25,7 @@ export default {
   addSongsForNewDiary(state, payload) {
     return ["songsForNewDiary", payload];
   },
+  openMenu(state, payload) {
+    return ["isMenuOpen", payload];
+  },
 };
