@@ -1,4 +1,4 @@
-import { youtubeApiKey } from "./secretKey";
+import { youtubeApiKey } from "../config/secretKey";
 import axios from "axios";
 
 const apiBaseUrl = "http://localhost:3000";
